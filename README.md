@@ -1,2 +1,2 @@
 # RISCV_32bits_Copilot
-Conceptin d'un processeur 32bits à l'aide d'instructions Copilot.
+Conception d'un processeur 32bits à l'aide d'instructions Copilot.
