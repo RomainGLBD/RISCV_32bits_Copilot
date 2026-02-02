@@ -5,7 +5,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity File_de_registres is
     Port (
-        clk         : in  STD_LOGIC;
+        clk         : in  STD_LOGIC; -- Clock signal
         we          : in  STD_LOGIC; -- Write enable
         wr_addr     : in  STD_LOGIC_VECTOR(4 downto 0); -- Write address (5 bits for 32 registers)
         wr_data     : in  STD_LOGIC_VECTOR(31 downto 0); -- Write data (32 bits)
