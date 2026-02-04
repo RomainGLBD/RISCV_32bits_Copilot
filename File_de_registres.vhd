@@ -20,7 +20,6 @@ architecture Behavioral of File_de_registres is
     type reg_file_type is array (0 to 31) of STD_LOGIC_VECTOR(31 downto 0);
     signal reg_file : reg_file_type := (others => (others => '0')); -- Initialize registers to 0
 begin
-    // BEGIN: Write Process
     process(clk)
     begin
         if rising_edge(clk) then
@@ -29,10 +28,8 @@ begin
             end if;
         end if;
     end process;
-    // END: Write Process
 
-    // BEGIN: Read Process
-    rd_data1 <= reg_file(to_integer(unsigned(rd_addr1)));
-    rd_data2 <= reg_file(to_integer(unsigned(rd_addr2)));
-    // END: Read Process
+    rd_data1 <= (others => '0') when rd_addr1 = "00000" else reg_file(to_integer(unsigned(rd_addr1)));
+    rd_data2 <= (others => '0') when rd_addr2 = "00000" else reg_file(to_integer(unsigned(rd_addr2)));
+
 end Behavioral;
