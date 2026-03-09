@@ -12,7 +12,7 @@ entity Memoire_data is
 end Memoire_data;
 
 architecture Behavioral of Memoire_data is
-        type memory_array is array (0 to 32767) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 65536) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
                                 0  => x"0FF000FF",
                                 1  => x"00000000",
@@ -61,21 +61,17 @@ architecture Behavioral of Memoire_data is
         
         others => (others => '0'));
         signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
-        signal word_idx_dbg  : STD_LOGIC_VECTOR(15 downto 0);
 begin
 
         process(clk)
-                variable word_idx  : integer;
-                variable word_idx_16 : STD_LOGIC_VECTOR(15 downto 0);
+                variable word_idx  : unsigned(16 downto 0);
                 variable word_data : STD_LOGIC_VECTOR(31 downto 0);
         begin
                 if rising_edge(clk) then
-                        word_idx := to_integer(unsigned(addr(16 downto 2)));
-                        word_idx_16 := std_logic_vector(shift_left(resize(unsigned(addr(15 downto 2)), 16), 2));
-                        word_idx_dbg <= word_idx_16;
+                        word_idx := shift_left(resize(unsigned(addr(16 downto 2)), 17), 2);
                         if we /= "0000" then
                                 -- Use enough address bits to cover full data memory depth.
-                                word_data := memory(word_idx);
+                                word_data := memory(to_integer(word_idx));
                                 if we(0) = '1' then
                                         word_data(7 downto 0) := data_in(7 downto 0);
                                 end if;
@@ -89,9 +85,9 @@ begin
                                         word_data(31 downto 24) := data_in(31 downto 24);
                                 end if;
                                 word_data_dbg <= word_data;
-                                memory(word_idx) <= word_data;
+                                memory(to_integer(word_idx)) <= word_data;
                         else
-                                data_out <= memory(word_idx);
+                                data_out <= memory(to_integer(word_idx));
                         end if;
                 end if;
         end process;
