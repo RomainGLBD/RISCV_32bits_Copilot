@@ -66,12 +66,13 @@ begin
         begin
                 if falling_edge(clk) then 
                         if we = '1' then
-                                memory(to_integer(unsigned(addr(11 downto 2)))) <= data_in;
+                                -- Use enough address bits to cover full data memory depth.
+                                memory(to_integer(unsigned(addr(16 downto 2)))) <= data_in;
                         end if;
                 end if;
                 
                 if rising_edge(clk) then 
-                        data_out <= memory(to_integer(unsigned(addr(11 downto 2))));
+                        data_out <= memory(to_integer(unsigned(addr(16 downto 2))));
                 end if;
         end process;
 

@@ -7912,9 +7912,9 @@ begin
         begin
                 if rising_edge(clk) then
                         if we = '1' then
-                                memory(to_integer(unsigned(addr(11 downto 2)))) <= data_in;
+                                memory(to_integer(unsigned(addr(15 downto 2)))) <= data_in;
                         end if;
-                        data_out_reg <= memory(to_integer(unsigned(addr(11 downto 2)))); 
+                        data_out_reg <= memory(to_integer(unsigned(addr(15 downto 2)))); 
                 end if;
         end process;
 
