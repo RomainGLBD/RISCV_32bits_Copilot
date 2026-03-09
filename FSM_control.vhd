@@ -9,6 +9,8 @@ entity FSM_control is
                 instruction : in STD_LOGIC_VECTOR(31 downto 0);
                 branch_control : in STD_LOGIC;
                 sel_pc : out STD_LOGIC_VECTOR(1 downto 0);
+                pc_we : out STD_LOGIC;
+                ir_we : out STD_LOGIC;
                 rf_wen : out STD_LOGIC;
                 type_imm : out STD_LOGIC_VECTOR(2 downto 0);
                 sel_wb : out STD_LOGIC_VECTOR(1 downto 0);
@@ -53,19 +55,21 @@ begin
                         when FETCH =>
                                 next_state <= DECODE;
                         when DECODE =>
-                                case opcode is
-                                        when "0000011" => next_state <= MEMORY; -- Load
-                                        when "0100011" => next_state <= MEMORY; -- Store
-                                        when others => next_state <= EXECUTE;
-                                end case;
+                                next_state <= EXECUTE;
                         when EXECUTE =>
-                                if branch_control = '1' then
-                                    next_state <= FETCH; -- Branch taken
+                                if opcode = "0000011" or opcode = "0100011" then
+                                        next_state <= MEMORY;
+                                elsif opcode = "1100011" then
+                                        next_state <= FETCH;
                                 else
-                                    next_state <= WRITEBACK;
+                                        next_state <= WRITEBACK;
                                 end if;
                         when MEMORY =>
-                                next_state <= WRITEBACK;
+                                if opcode = "0100011" then
+                                        next_state <= FETCH;
+                                else
+                                        next_state <= WRITEBACK;
+                                end if;
                         when WRITEBACK =>
                                 next_state <= IDLE;
                 end case;
@@ -74,6 +78,8 @@ begin
         process(current_state, opcode, func3, branch_control)
         begin
                 sel_pc <= "11";
+                pc_we <= '0';
+                ir_we <= '0';
                 rf_wen <= '0';
                 type_imm <= "000";
                 sel_wb <= "00";
@@ -114,7 +120,10 @@ begin
                 end case;
 
                 case current_state is
+                        when FETCH =>
+                                ir_we <= '1';
                         when EXECUTE =>
+                                pc_we <= '1';
                                 if opcode = "1100011" then
                                         if branch_control = '1' then
                                                 sel_pc <= "10";

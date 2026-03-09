@@ -18,12 +18,15 @@ architecture Structural of Top_level is
 	signal pc_out_s         : STD_LOGIC_VECTOR(31 downto 0);
 	signal pc_plus4_s       : STD_LOGIC_VECTOR(31 downto 0);
 	signal pc_next_s        : STD_LOGIC_VECTOR(31 downto 0);
-	signal instruction_s    : STD_LOGIC_VECTOR(31 downto 0);
+		signal instruction_s    : STD_LOGIC_VECTOR(31 downto 0);
+		signal instruction_reg_s: STD_LOGIC_VECTOR(31 downto 0);
 	signal imm_s            : STD_LOGIC_VECTOR(31 downto 0);
 	signal br_jal_adr_s     : STD_LOGIC_VECTOR(31 downto 0);
 	signal jalr_adr_s       : STD_LOGIC_VECTOR(31 downto 0);
 
 	signal sel_pc_s         : STD_LOGIC_VECTOR(1 downto 0);
+		signal pc_we_s          : STD_LOGIC;
+		signal ir_we_s          : STD_LOGIC;
 	signal rf_wen_s         : STD_LOGIC;
 	signal type_imm_s       : STD_LOGIC_VECTOR(2 downto 0);
 	signal sel_wb_s         : STD_LOGIC_VECTOR(1 downto 0);
@@ -53,6 +56,7 @@ begin
 		port map (
 			clk     => clk,
 			reset   => reset,
+				pc_we   => pc_we_s,
 			mux_out => pc_next_s,
 			pc_out  => pc_out_s
 		);
@@ -89,13 +93,26 @@ begin
 			we       => '0'
 		);
 
+	process(clk, reset)
+	begin
+		if reset = '1' then
+				instruction_reg_s <= (others => '0');
+		elsif rising_edge(clk) then
+				if ir_we_s = '1' then
+						instruction_reg_s <= instruction_s;
+				end if;
+		end if;
+	end process;
+
 	u_fsm: entity work.FSM_control
 		port map (
 			clk            => clk,
 			reset          => reset,
-			instruction    => instruction_s,
+				instruction    => instruction_reg_s,
 			branch_control => branch_to_fsm_s,
 			sel_pc         => sel_pc_s,
+				pc_we          => pc_we_s,
+				ir_we          => ir_we_s,
 			rf_wen         => rf_wen_s,
 			type_imm       => type_imm_s,
 			sel_wb         => sel_wb_s,
@@ -119,17 +136,17 @@ begin
 		port map (
 			clk      => clk,
 			we       => rf_wen_s,
-			wr_addr  => instruction_s(11 downto 7),
+				wr_addr  => instruction_reg_s(11 downto 7),
 			wr_data  => wb_data_s,
-			rd_addr1 => instruction_s(19 downto 15),
-			rd_addr2 => instruction_s(24 downto 20),
+				rd_addr1 => instruction_reg_s(19 downto 15),
+				rd_addr2 => instruction_reg_s(24 downto 20),
 			rd_data1 => rs1_data_s,
 			rd_data2 => rs2_data_s
 		);
 
 	u_imm_gen: entity work.gen_imm
 		port map (
-			Instr    => instruction_s,
+				Instr    => instruction_reg_s,
 			type_imm => type_imm_s,
 			imm_out  => imm_s
 		);
@@ -171,7 +188,7 @@ begin
 		);
 
 	pc_dbg <= pc_out_s;
-	instr_dbg <= instruction_s;
+		instr_dbg <= instruction_reg_s;
 	alu_dbg <= alu_result_s;
 	wb_dbg <= wb_data_s;
 	branch_dbg <= branch_to_fsm_s;
