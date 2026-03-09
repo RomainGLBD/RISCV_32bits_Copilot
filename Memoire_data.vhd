@@ -61,6 +61,7 @@ architecture Behavioral of Memoire_data is
         
         others => (others => '0'));
         signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
+        signal word_idx_dbg  : STD_LOGIC_VECTOR(31 downto 0);
 begin
 
         process(clk)
@@ -69,6 +70,7 @@ begin
         begin
                 if rising_edge(clk) then
                         word_idx := to_integer(unsigned(addr(16 downto 2)));
+                        word_idx_dbg <= std_logic_vector(to_unsigned(word_idx, 32));
                         if we /= "0000" then
                                 -- Use enough address bits to cover full data memory depth.
                                 word_data := memory(word_idx);
