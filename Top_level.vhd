@@ -31,7 +31,9 @@ architecture Structural of Top_level is
 	signal type_imm_s       : STD_LOGIC_VECTOR(2 downto 0);
 	signal sel_wb_s         : STD_LOGIC_VECTOR(1 downto 0);
 	signal sel_op2_s        : STD_LOGIC;
-	signal dmem_wen_s       : STD_LOGIC;
+	signal dmem_we_req_s    : STD_LOGIC;
+	signal dmem_wmask_s     : STD_LOGIC_VECTOR(3 downto 0);
+	signal dmem_wen_s       : STD_LOGIC_VECTOR(3 downto 0);
 	signal opcode_s         : STD_LOGIC_VECTOR(6 downto 0);
 	signal func3_s          : STD_LOGIC_VECTOR(2 downto 0);
 	signal func7_s          : STD_LOGIC_VECTOR(6 downto 0);
@@ -51,6 +53,7 @@ begin
 	-- Keep branch feedback active only for branch opcodes to avoid false branching.
 	branch_to_fsm_s <= alu_branch_s when opcode_s = "1100011" else '0';
 	jalr_adr_s <= alu_result_s(31 downto 1) & '0';
+	dmem_wen_s <= dmem_wmask_s when dmem_we_req_s = '1' else (others => '0');
 
 	u_pc: entity work.Programm_Counter
 		port map (
@@ -117,7 +120,7 @@ begin
 			type_imm       => type_imm_s,
 			sel_wb         => sel_wb_s,
 			sel_op2        => sel_op2_s,
-			dmem_wen       => dmem_wen_s,
+			dmem_wen       => dmem_we_req_s,
 			opcode_out     => opcode_s,
 			func3_out      => func3_s,
 			func7_out      => func7_s
@@ -128,8 +131,10 @@ begin
 			opcode          => opcode_s,
 			func3           => func3_s,
 			func7           => func7_s,
+			addr_lsb        => alu_result_s(1 downto 0),
 			sel_fnct_alu    => alu_ctrl_s,
-			sel_fnct_br_alu => br_type_s
+			sel_fnct_br_alu => br_type_s,
+			dmem_wmask      => dmem_wmask_s
 		);
 
 	u_rf: entity work.File_de_registres

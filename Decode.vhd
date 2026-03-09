@@ -7,20 +7,24 @@ entity Decode is
 		opcode          : in  STD_LOGIC_VECTOR(6 downto 0);
 		func3           : in  STD_LOGIC_VECTOR(2 downto 0);
 		func7           : in  STD_LOGIC_VECTOR(6 downto 0);
+		addr_lsb        : in  STD_LOGIC_VECTOR(1 downto 0);
 		sel_fnct_alu    : out STD_LOGIC_VECTOR(3 downto 0);
-		sel_fnct_br_alu : out STD_LOGIC_VECTOR(2 downto 0)
+		sel_fnct_br_alu : out STD_LOGIC_VECTOR(2 downto 0);
+		dmem_wmask      : out STD_LOGIC_VECTOR(3 downto 0)
 	);
 end Decode;
 
 architecture Behavioral of Decode is
 begin
-	process(opcode, func3, func7)
+	process(opcode, func3, func7, addr_lsb)
 		variable alu_sel : STD_LOGIC_VECTOR(3 downto 0);
 		variable br_sel  : STD_LOGIC_VECTOR(2 downto 0);
+		variable wmask   : STD_LOGIC_VECTOR(3 downto 0);
 	begin
 		-- Defaults
 		alu_sel := "0010"; -- ADD
 		br_sel  := "000"; -- BEQ (unused when not branching)
+		wmask   := "0000";
 
 		case opcode is
 			-- R-type
@@ -78,6 +82,25 @@ begin
 			-- S-type (stores) use ADD
 			when "0100011" =>
 				alu_sel := "0010";
+				case func3 is
+					when "000" => -- SB
+						case addr_lsb is
+							when "00" => wmask := "0001";
+							when "01" => wmask := "0010";
+							when "10" => wmask := "0100";
+							when others => wmask := "1000";
+						end case;
+					when "001" => -- SH
+						if addr_lsb(1) = '0' then
+							wmask := "0011";
+						else
+							wmask := "1100";
+						end if;
+					when "010" => -- SW
+						wmask := "1111";
+					when others =>
+						wmask := "0000";
+				end case;
 
 			-- AUIPC / LUI / JAL / JALR use ADD
 			when "0010111" | "0110111" | "1101111" | "1100111" =>
@@ -102,5 +125,6 @@ begin
 
 		sel_fnct_alu    <= alu_sel;
 		sel_fnct_br_alu <= br_sel;
+		dmem_wmask      <= wmask;
 	end process;
 end Behavioral;
