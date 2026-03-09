@@ -22,13 +22,14 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if we = '1' then
+            reg_file(0) <= (others => '0');
+            if we = '1' and wr_addr /= "00000" then
                 reg_file(to_integer(unsigned(wr_addr))) <= wr_data;
             end if;
         end if;
     end process;
 
-    rd_data1 <= (others => '0') when rd_addr1 = "00000" else reg_file(to_integer(unsigned(rd_addr1)));
-    rd_data2 <= (others => '0') when rd_addr2 = "00000" else reg_file(to_integer(unsigned(rd_addr2)));
+    rd_data1 <= reg_file(to_integer(unsigned(rd_addr1)));
+    rd_data2 <= reg_file(to_integer(unsigned(rd_addr2)));
 
 end Behavioral;
