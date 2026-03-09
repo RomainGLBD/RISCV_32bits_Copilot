@@ -13,7 +13,53 @@ end Memoire_data;
 
 architecture Behavioral of Memoire_data is
         type memory_array is array (0 to 1023) of STD_LOGIC_VECTOR(31 downto 0);
-        signal memory : memory_array := (others => (others => '0'));
+        signal memory : memory_array := (
+                0x0ff000ff,
+                0x00000000,
+                0x00000000,
+                0x00000000,
+                0x0ff000ff,
+                0x00000000,
+                0x00000000,
+                0x00000000,
+                0xff0000ff,
+                0xf00f0ff0,
+                0x00000000,
+                0x00000000,
+                0xff0000ff,
+                0xf00f0ff0,
+                0x00000000,
+                0x00000000,
+                0x00ff00ff,
+                0xff00ff00,
+                0x0ff00ff0,
+                0xf00ff00f,
+                0xefefefef,
+                0xefefefef,
+                0x0000efef,
+                0x00000000,
+                0xbeefbeef,
+                0xbeefbeef,
+                0xbeefbeef,
+                0xbeefbeef,
+                0xbeefbeef,
+                0x00000000,
+                0x00000000,
+                0x00000000,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0xdeadbeef,
+                0x00000000,
+                0x00000000,
+        
+        others => (others => '0'));
 begin
 
         process(clk)

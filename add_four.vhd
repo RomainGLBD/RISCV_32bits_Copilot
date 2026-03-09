@@ -11,6 +11,6 @@ architecture Behavioral of add_four is
 begin
     process(pc_out)
     begin
-        pc_plus4 <= pc_out + "00000000000000000000000000000100"; -- Ajoute 4
+        pc_plus4 <= STD_LOGIC_VECTOR(UNSIGNED(pc_out) + UNSIGNED("00000000000000000000000000000100")); -- Ajoute 4
     end process;
 end Behavioral;
