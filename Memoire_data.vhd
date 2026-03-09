@@ -60,6 +60,7 @@ architecture Behavioral of Memoire_data is
                                 43 => x"00000000",
         
         others => (others => '0'));
+        signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
 begin
 
         process(clk)
@@ -83,6 +84,7 @@ begin
                                 if we(3) = '1' then
                                         word_data(31 downto 24) := data_in(31 downto 24);
                                 end if;
+                                word_data_dbg <= word_data;
                                 memory(word_idx) <= word_data;
                         else
                                 data_out <= memory(word_idx);
