@@ -1,0 +1,178 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity Top_level is
+	Port (
+		clk        : in  STD_LOGIC;
+		reset      : in  STD_LOGIC;
+		pc_dbg     : out STD_LOGIC_VECTOR(31 downto 0);
+		instr_dbg  : out STD_LOGIC_VECTOR(31 downto 0);
+		alu_dbg    : out STD_LOGIC_VECTOR(31 downto 0);
+		wb_dbg     : out STD_LOGIC_VECTOR(31 downto 0);
+		branch_dbg : out STD_LOGIC
+	);
+end Top_level;
+
+architecture Structural of Top_level is
+	signal pc_out_s         : STD_LOGIC_VECTOR(31 downto 0);
+	signal pc_plus4_s       : STD_LOGIC_VECTOR(31 downto 0);
+	signal pc_next_s        : STD_LOGIC_VECTOR(31 downto 0);
+	signal instruction_s    : STD_LOGIC_VECTOR(31 downto 0);
+	signal imm_s            : STD_LOGIC_VECTOR(31 downto 0);
+	signal br_jal_adr_s     : STD_LOGIC_VECTOR(31 downto 0);
+	signal jalr_adr_s       : STD_LOGIC_VECTOR(31 downto 0);
+
+	signal sel_pc_s         : STD_LOGIC_VECTOR(1 downto 0);
+	signal rf_wen_s         : STD_LOGIC;
+	signal type_imm_s       : STD_LOGIC_VECTOR(2 downto 0);
+	signal sel_wb_s         : STD_LOGIC_VECTOR(1 downto 0);
+	signal sel_op2_s        : STD_LOGIC;
+	signal dmem_wen_s       : STD_LOGIC;
+	signal opcode_s         : STD_LOGIC_VECTOR(6 downto 0);
+	signal func3_s          : STD_LOGIC_VECTOR(2 downto 0);
+	signal func7_s          : STD_LOGIC_VECTOR(6 downto 0);
+
+	signal alu_ctrl_s       : STD_LOGIC_VECTOR(3 downto 0);
+	signal br_type_s        : STD_LOGIC_VECTOR(2 downto 0);
+	signal alu_b_s          : STD_LOGIC_VECTOR(31 downto 0);
+	signal alu_result_s     : STD_LOGIC_VECTOR(31 downto 0);
+	signal alu_branch_s     : STD_LOGIC;
+	signal branch_to_fsm_s  : STD_LOGIC;
+
+	signal rs1_data_s       : STD_LOGIC_VECTOR(31 downto 0);
+	signal rs2_data_s       : STD_LOGIC_VECTOR(31 downto 0);
+	signal wb_data_s        : STD_LOGIC_VECTOR(31 downto 0);
+	signal dmem_out_s       : STD_LOGIC_VECTOR(31 downto 0);
+begin
+	-- Keep branch feedback active only for branch opcodes to avoid false branching.
+	branch_to_fsm_s <= alu_branch_s when opcode_s = "1100011" else '0';
+	jalr_adr_s <= alu_result_s(31 downto 1) & '0';
+
+	u_pc: entity work.Programm_Counter
+		port map (
+			clk     => clk,
+			reset   => reset,
+			mux_out => pc_next_s,
+			pc_out  => pc_out_s
+		);
+
+	u_add4: entity work.add_four
+		port map (
+			pc_out   => pc_out_s,
+			pc_plus4 => pc_plus4_s
+		);
+
+	u_add_imm: entity work.add_imm
+		port map (
+			IMM        => imm_s,
+			pc_out     => pc_out_s,
+			br_jal_adr => br_jal_adr_s
+		);
+
+	u_mux_pc: entity work.mux_pc
+		port map (
+			jalr_adr   => jalr_adr_s,
+			jr_jal_adr => br_jal_adr_s,
+			br_jal_adr => br_jal_adr_s,
+			pc_plus4   => pc_plus4_s,
+			sel_pc     => sel_pc_s,
+			mux_out    => pc_next_s
+		);
+
+	u_imem: entity work.Memoire_instructions
+		port map (
+			clk      => clk,
+			addr     => pc_out_s,
+			data_out => instruction_s,
+			data_in  => (others => '0'),
+			we       => '0'
+		);
+
+	u_fsm: entity work.FSM_control
+		port map (
+			clk            => clk,
+			reset          => reset,
+			instruction    => instruction_s,
+			branch_control => branch_to_fsm_s,
+			sel_pc         => sel_pc_s,
+			rf_wen         => rf_wen_s,
+			type_imm       => type_imm_s,
+			sel_wb         => sel_wb_s,
+			sel_op2        => sel_op2_s,
+			dmem_wen       => dmem_wen_s,
+			opcode_out     => opcode_s,
+			func3_out      => func3_s,
+			func7_out      => func7_s
+		);
+
+	u_decode: entity work.Decode
+		port map (
+			opcode          => opcode_s,
+			func3           => func3_s,
+			func7           => func7_s,
+			sel_fnct_alu    => alu_ctrl_s,
+			sel_fnct_br_alu => br_type_s
+		);
+
+	u_rf: entity work.File_de_registres
+		port map (
+			clk      => clk,
+			we       => rf_wen_s,
+			wr_addr  => instruction_s(11 downto 7),
+			wr_data  => wb_data_s,
+			rd_addr1 => instruction_s(19 downto 15),
+			rd_addr2 => instruction_s(24 downto 20),
+			rd_data1 => rs1_data_s,
+			rd_data2 => rs2_data_s
+		);
+
+	u_imm_gen: entity work.gen_imm
+		port map (
+			Instr    => instruction_s,
+			type_imm => type_imm_s,
+			imm_out  => imm_s
+		);
+
+	u_mux_pre_alu: entity work.mux_pre_alu
+		port map (
+			RD2     => rs2_data_s,
+			IMM     => imm_s,
+			sel_op2 => sel_op2_s,
+			B       => alu_b_s
+		);
+
+	u_alu: entity work.ALU_32_bits
+		port map (
+			A           => rs1_data_s,
+			B           => alu_b_s,
+			ALUCtrl     => alu_ctrl_s,
+			BranchType  => br_type_s,
+			Result      => alu_result_s,
+			branchement => alu_branch_s
+		);
+
+	u_dmem: entity work.Memoire_data
+		port map (
+			clk      => clk,
+			we       => dmem_wen_s,
+			addr     => alu_result_s,
+			data_in  => rs2_data_s,
+			data_out => dmem_out_s
+		);
+
+	u_mux_wb: entity work.mux_post_alu
+		port map (
+			D       => dmem_out_s,
+			alu_out => alu_result_s,
+			pc_out  => pc_plus4_s,
+			sel_wb  => sel_wb_s,
+			WD      => wb_data_s
+		);
+
+	pc_dbg <= pc_out_s;
+	instr_dbg <= instruction_s;
+	alu_dbg <= alu_result_s;
+	wb_dbg <= wb_data_s;
+	branch_dbg <= branch_to_fsm_s;
+end Structural;
