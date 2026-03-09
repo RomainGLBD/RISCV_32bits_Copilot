@@ -11,7 +11,7 @@ entity Memoire_instructions is
 end Memoire_instructions;
 
 architecture Behavioral of Memoire_instructions is
-        type memory_array is array (0 to 1023) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 8192) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
                 0 => x"00002537",
                 1 => x"00050513",
