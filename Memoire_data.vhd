@@ -12,7 +12,7 @@ entity Memoire_data is
 end Memoire_data;
 
 architecture Behavioral of Memoire_data is
-        type memory_array is array (0 to 1023) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 16384) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
                                 0  => x"0FF000FF",
                                 1  => x"00000000",
