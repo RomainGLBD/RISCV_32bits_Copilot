@@ -1,46 +1,46 @@
 v 4
-file . "tb_Top_level.vhd" "720822d760759c6dd5c79e65e281ca651730f1ad" "20260309102452.188":
-  entity tb_top_level at 1( 0) + 0 on 279;
-  architecture behavioral of tb_top_level at 8( 112) + 0 on 280;
-file . "Top_level.vhd" "9a15e6ea8944ca2a4e3a1a8f324a71f0d1cc6bc9" "20260309102452.187":
-  entity top_level at 1( 0) + 0 on 277;
-  architecture structural of top_level at 17( 407) + 0 on 278;
-file . "Program_counter.vhd" "a2d5fc9c10f4189b15bc1b6bdd5a005fc92d6a45" "20260309102452.186":
-  entity programm_counter at 1( 0) + 0 on 275;
-  architecture behavioral of programm_counter at 14( 424) + 0 on 276;
-file . "mux_pre_alu.vhd" "addf6273e18aca6c6730586c20b6d70dd5a79827" "20260309102452.186":
-  entity mux_pre_alu at 1( 0) + 0 on 273;
-  architecture behavioral of mux_pre_alu at 13( 299) + 0 on 274;
-file . "mux_post_alu.vhd" "3b917382df42416b0db5b41ee1b4d515f3c93901" "20260309102452.185":
-  entity mux_post_alu at 1( 0) + 0 on 271;
-  architecture behavioral of mux_post_alu at 14( 376) + 0 on 272;
-file . "mux_pc.vhd" "807c2a5cae5243363084af6ca6121349b8197e73" "20260309102452.184":
-  entity mux_pc at 1( 0) + 0 on 269;
-  architecture behavioral of mux_pc at 17( 494) + 0 on 270;
-file . "Memoire_instructions.vhd" "537e949942a680426ab9de8f7d4df2d0adc88496" "20260309102452.183":
-  entity memoire_instructions at 1( 0) + 0 on 267;
-  architecture behavioral of memoire_instructions at 13( 390) + 0 on 268;
-file . "Memoire_data.vhd" "cb3b897bd072b1e12971353e695b356df5d20541" "20260309102452.151":
-  entity memoire_data at 1( 0) + 0 on 265;
-  architecture behavioral of memoire_data at 14( 451) + 0 on 266;
-file . "gen_imm.vhd" "e10458b35c31c66ff0b24e27bbfeea48f2723880" "20260309102452.150":
-  entity gen_imm at 1( 0) + 0 on 263;
-  architecture rtl of gen_imm at 16( 440) + 0 on 264;
-file . "FSM_control.vhd" "12a59cc54d5b6550d0c1b00198c6ddd4e80781f5" "20260309102452.149":
-  entity fsm_control at 1( 0) + 0 on 261;
-  architecture behavioral of fsm_control at 25( 887) + 0 on 262;
-file . "File_de_registres.vhd" "9b75a5b0eb69ce38c63b79a12eba264177a44a61" "20260309102452.148":
-  entity file_de_registres at 1( 0) + 0 on 259;
-  architecture behavioral of file_de_registres at 18( 718) + 0 on 260;
-file . "Decode.vhd" "1f7136c1e142ff5611a79b91153f2ca56b770b7b" "20260309102452.147":
-  entity decode at 1( 0) + 0 on 257;
-  architecture behavioral of decode at 15( 381) + 0 on 258;
-file . "ALU_32_bits.vhd" "552aa04fad517e1cdaeef4a092cfbe17f5f12d16" "20260309102452.147":
-  entity alu_32_bits at 1( 0) + 0 on 255;
-  architecture behavioral of alu_32_bits at 16( 473) + 0 on 256;
-file . "add_imm.vhd" "ff370914f925c7a772bc8c1d3de4a30dc181e8e7" "20260309102452.146":
-  entity add_imm at 1( 0) + 0 on 253;
-  architecture behavioral of add_imm at 13( 307) + 0 on 254;
-file . "add_four.vhd" "fdd47664dfeb394bf713ff79ae7d238c83110f81" "20260309102452.145":
-  entity add_four at 1( 0) + 0 on 251;
-  architecture behavioral of add_four at 10( 216) + 0 on 252;
+file . "tb_Top_level.vhd" "720822d760759c6dd5c79e65e281ca651730f1ad" "20260309112640.556":
+  entity tb_top_level at 1( 0) + 0 on 399;
+  architecture behavioral of tb_top_level at 8( 112) + 0 on 400;
+file . "Top_level.vhd" "867a1d1b01a299f0101068e651839fc0becef6c5" "20260309112640.555":
+  entity top_level at 1( 0) + 0 on 397;
+  architecture structural of top_level at 17( 407) + 0 on 398;
+file . "Program_counter.vhd" "a2d5fc9c10f4189b15bc1b6bdd5a005fc92d6a45" "20260309112640.554":
+  entity programm_counter at 1( 0) + 0 on 395;
+  architecture behavioral of programm_counter at 14( 424) + 0 on 396;
+file . "mux_pre_alu.vhd" "addf6273e18aca6c6730586c20b6d70dd5a79827" "20260309112640.553":
+  entity mux_pre_alu at 1( 0) + 0 on 393;
+  architecture behavioral of mux_pre_alu at 13( 299) + 0 on 394;
+file . "mux_post_alu.vhd" "3b917382df42416b0db5b41ee1b4d515f3c93901" "20260309112640.552":
+  entity mux_post_alu at 1( 0) + 0 on 391;
+  architecture behavioral of mux_post_alu at 14( 376) + 0 on 392;
+file . "mux_pc.vhd" "807c2a5cae5243363084af6ca6121349b8197e73" "20260309112640.552":
+  entity mux_pc at 1( 0) + 0 on 389;
+  architecture behavioral of mux_pc at 17( 494) + 0 on 390;
+file . "Memoire_instructions.vhd" "9633d6833158035861fafb2a0630342239338947" "20260309112640.551":
+  entity memoire_instructions at 1( 0) + 0 on 387;
+  architecture behavioral of memoire_instructions at 13( 390) + 0 on 388;
+file . "Memoire_data.vhd" "f54cd593ad1f56c77d69899e40ad95093e78b598" "20260309112640.519":
+  entity memoire_data at 1( 0) + 0 on 385;
+  architecture behavioral of memoire_data at 14( 451) + 0 on 386;
+file . "gen_imm.vhd" "e10458b35c31c66ff0b24e27bbfeea48f2723880" "20260309112640.518":
+  entity gen_imm at 1( 0) + 0 on 383;
+  architecture rtl of gen_imm at 16( 440) + 0 on 384;
+file . "FSM_control.vhd" "12a59cc54d5b6550d0c1b00198c6ddd4e80781f5" "20260309112640.517":
+  entity fsm_control at 1( 0) + 0 on 381;
+  architecture behavioral of fsm_control at 25( 887) + 0 on 382;
+file . "File_de_registres.vhd" "9b75a5b0eb69ce38c63b79a12eba264177a44a61" "20260309112640.516":
+  entity file_de_registres at 1( 0) + 0 on 379;
+  architecture behavioral of file_de_registres at 18( 718) + 0 on 380;
+file . "Decode.vhd" "1f7136c1e142ff5611a79b91153f2ca56b770b7b" "20260309112640.515":
+  entity decode at 1( 0) + 0 on 377;
+  architecture behavioral of decode at 15( 381) + 0 on 378;
+file . "ALU_32_bits.vhd" "552aa04fad517e1cdaeef4a092cfbe17f5f12d16" "20260309112640.514":
+  entity alu_32_bits at 1( 0) + 0 on 375;
+  architecture behavioral of alu_32_bits at 16( 473) + 0 on 376;
+file . "add_imm.vhd" "ff370914f925c7a772bc8c1d3de4a30dc181e8e7" "20260309112640.513":
+  entity add_imm at 1( 0) + 0 on 373;
+  architecture behavioral of add_imm at 13( 307) + 0 on 374;
+file . "add_four.vhd" "fdd47664dfeb394bf713ff79ae7d238c83110f81" "20260309112640.512":
+  entity add_four at 1( 0) + 0 on 371;
+  architecture behavioral of add_four at 10( 216) + 0 on 372;
