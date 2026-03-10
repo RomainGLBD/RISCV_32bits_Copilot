@@ -23,7 +23,7 @@ entity FSM_control is
 end FSM_control;
 
 architecture Behavioral of FSM_control is
-        type state_type is (IDLE, FETCH, DECODE, EXECUTE, JAL_DELAY, MEMORY, WRITEBACK);
+        type state_type is (FETCH, DECODE, EXECUTE, JAL_DELAY, MEMORY, WRITEBACK);
         signal current_state, next_state: state_type;
         signal opcode : STD_LOGIC_VECTOR(6 downto 0);
         signal func3 : STD_LOGIC_VECTOR(2 downto 0);
@@ -41,7 +41,7 @@ begin
         process(clk, reset)
         begin
                 if reset = '1' then
-                        current_state <= IDLE;
+                        current_state <= FETCH;
                 elsif rising_edge(clk) then
                         current_state <= next_state;
                 end if;
@@ -50,8 +50,6 @@ begin
         process(current_state, opcode)
         begin
                 case current_state is
-                        when IDLE =>
-                                next_state <= FETCH;
                         when FETCH =>
                                 next_state <= DECODE;
                         when DECODE =>
@@ -67,7 +65,7 @@ begin
                                         next_state <= WRITEBACK;
                                 end if;
                         when JAL_DELAY =>
-                                next_state <= WRITEBACK;
+                                next_state <= FETCH;
                         when MEMORY =>
                                 if opcode = "0100011" then
                                         next_state <= FETCH;
@@ -75,7 +73,7 @@ begin
                                         next_state <= WRITEBACK;
                                 end if;
                         when WRITEBACK =>
-                                next_state <= IDLE;
+                                next_state <= FETCH;
                 end case;
         end process;
 
@@ -124,29 +122,34 @@ begin
                 end case;
 
                 case current_state is
+                        
                         when FETCH =>
-                                ir_we <= '1';
+                        ir_we <= '1';
+
                         when EXECUTE =>
-                                pc_we <= '1';
-                                if opcode = "1100011" then
-                                        if branch_control = '1' then
-                                                sel_pc <= "10";
-                                        else
-                                                sel_pc <= "11";
-                                        end if;
-                                elsif opcode = "1101111" then
-                                        sel_pc <= "01";
-                                elsif opcode = "1100111" then
-                                        sel_pc <= "00";
+                        pc_we <= '1';
+                        if opcode = "1100011" then
+                                if branch_control = '1' then
+                                        sel_pc <= "10";
                                 else
                                         sel_pc <= "11";
                                 end if;
+                        elsif opcode = "1101111" then
+                                sel_pc <= "01";
+                        elsif opcode = "1100111" then
+                                sel_pc <= "00";
+                        else
+                                sel_pc <= "11";
+                        end if;
+
                         when MEMORY =>
-                                if opcode = "0100011" then
-                                        dmem_wen <= '1';
+                        if opcode = "0100011" then
+                                dmem_wen <= '1';
                                 end if;
+
                         when JAL_DELAY =>
                                 null;
+
                         when WRITEBACK =>
                                 case opcode is
                                         when "0000011" =>
