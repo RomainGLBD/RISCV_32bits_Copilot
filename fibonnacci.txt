@@ -1,0 +1,18 @@
+0 => x"01400093" : addi x1, x0, 20 (x1 = 20)
+1 => x"00000113" : addi x2, x0, 0 (x2 = 0)
+2 => x"00100193" : addi x3, x0, 1 (x3 = 1)
+3 => x"00000213" : addi x4, x0, 0 (x4 = 0)
+4 => x"00B00293" : addi x5, x0, 11 (x5 = 11)
+5 => x"00208023" : sb x2, 0(x1) (stocke 1 octet de x2 à l'adresse x1)
+6 => x"00108093" : addi x1, x1, 1 (x1++)
+7 => x"00310333" : add x6, x2, x3 (x6 = x2 + x3)
+8 => x"00018113" : addi x2, x3, 0 (x2 = x3)
+9 => x"00030193" : addi x3, x6, 0 (x3 = x6)
+10 => x"00120213" : addi x4, x4, 1 (x4++)
+11 => x"00520463" : beq x4, x5, +8 (si x4==x5, saute l’instruction suivante)
+12 => x"FE5FF06F" : jal x0, -28 (retour au début de boucle)
+13 => x"0000006F" : jal x0, 0 (boucle infinie)
+Pour ta ligne sélectionnée 5 => x"00208023":
+
+c’est bien un sb x2, 0(x1).
+En résumé, ce petit programme génère une suite de type Fibonacci et stocke les valeurs (sur 1 octet) en mémoire à partir de l’adresse 20

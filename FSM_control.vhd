@@ -23,7 +23,7 @@ entity FSM_control is
 end FSM_control;
 
 architecture Behavioral of FSM_control is
-        type state_type is (IDLE, FETCH, DECODE, EXECUTE, MEMORY, WRITEBACK);
+        type state_type is (IDLE, FETCH, DECODE, EXECUTE, JAL_DELAY, MEMORY, WRITEBACK);
         signal current_state, next_state: state_type;
         signal opcode : STD_LOGIC_VECTOR(6 downto 0);
         signal func3 : STD_LOGIC_VECTOR(2 downto 0);
@@ -47,7 +47,7 @@ begin
                 end if;
         end process;
 
-        process(current_state, opcode, branch_control)
+        process(current_state, opcode)
         begin
                 case current_state is
                         when IDLE =>
@@ -61,9 +61,13 @@ begin
                                         next_state <= MEMORY;
                                 elsif opcode = "1100011" then
                                         next_state <= FETCH;
+                                elsif opcode = "1101111" then
+                                        next_state <= JAL_DELAY;
                                 else
                                         next_state <= WRITEBACK;
                                 end if;
+                        when JAL_DELAY =>
+                                next_state <= WRITEBACK;
                         when MEMORY =>
                                 if opcode = "0100011" then
                                         next_state <= FETCH;
@@ -141,6 +145,8 @@ begin
                                 if opcode = "0100011" then
                                         dmem_wen <= '1';
                                 end if;
+                        when JAL_DELAY =>
+                                null;
                         when WRITEBACK =>
                                 case opcode is
                                         when "0000011" =>
