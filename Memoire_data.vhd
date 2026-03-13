@@ -24,22 +24,30 @@ begin
                 variable word_data : STD_LOGIC_VECTOR(31 downto 0);
         begin
                 if rising_edge(clk) then
-                        word_idx := shift_left(resize(unsigned(addr(11 downto 2)), 12), 2);
+                        word_idx := resize(unsigned(addr(11 downto 2)), 12);
                         if we /= "0000" then
                                 -- Use enough address bits to cover full data memory depth.
                                 word_data := memory(to_integer(word_idx));
-                                if we(0) = '1' then
-                                        word_data(7 downto 0) := data_in(7 downto 0);
-                                end if;
-                                if we(1) = '1' then
-                                        word_data(15 downto 8) := data_in(15 downto 8);
-                                end if;
-                                if we(2) = '1' then
-                                        word_data(23 downto 16) := data_in(23 downto 16);
-                                end if;
-                                if we(3) = '1' then
-                                        word_data(31 downto 24) := data_in(31 downto 24);
-                                end if;
+                                case we is
+                                        when "0001" => -- SB at byte lane 0
+                                                word_data(7 downto 0) := data_in(7 downto 0);
+                                        when "0010" => -- SB at byte lane 1
+                                                word_data(15 downto 8) := data_in(7 downto 0);
+                                        when "0100" => -- SB at byte lane 2
+                                                word_data(23 downto 16) := data_in(7 downto 0);
+                                        when "1000" => -- SB at byte lane 3
+                                                word_data(31 downto 24) := data_in(7 downto 0);
+                                        when "0011" => -- SH at low halfword
+                                                word_data(7 downto 0) := data_in(7 downto 0);
+                                                word_data(15 downto 8) := data_in(15 downto 8);
+                                        when "1100" => -- SH at high halfword
+                                                word_data(23 downto 16) := data_in(7 downto 0);
+                                                word_data(31 downto 24) := data_in(15 downto 8);
+                                        when "1111" => -- SW
+                                                word_data := data_in;
+                                        when others =>
+                                                null;
+                                end case;
                                 word_data_dbg <= word_data;
                                 memory(to_integer(word_idx)) <= word_data;
                         else

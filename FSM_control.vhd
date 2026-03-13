@@ -58,7 +58,7 @@ begin
                                 if opcode = "0000011" or opcode = "0100011" then
                                         next_state <= MEMORY;
                                 elsif opcode = "1100011" then
-                                        next_state <= FETCH;
+                                        next_state <= WRITEBACK; 
                                 else
                                         next_state <= WRITEBACK;
                                 end if;
@@ -75,15 +75,6 @@ begin
 
         process(current_state, opcode, func3, branch_control)
         begin
-                sel_pc <= "11";
-                pc_we <= '0';
-                ir_we <= '0';
-                rf_wen <= '0';
-                type_imm <= "000";
-                sel_wb <= "00";
-                sel_op2 <= '0';
-                dmem_wen <= '0';
-
                 case opcode is
                         when "0000011" => -- Load
                                 type_imm <= "000";
@@ -96,6 +87,7 @@ begin
                                 sel_op2 <= '0';
                         when "1101111" => -- JAL
                                 type_imm <= "100";
+                                sel_op2 <= '0';
                         when "1100111" => -- JALR
                                 type_imm <= "000";
                                 sel_op2 <= '1';
@@ -118,32 +110,61 @@ begin
                 end case;
 
                 case current_state is
-                        
                         when FETCH =>
-                        ir_we <= '1';
+                                sel_pc <= "11";
+                                pc_we <= '0';
+                                ir_we <= '1';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
+
+                        when DECODE =>
+                                sel_pc <= "11";
+                                pc_we <= '0';
+                                ir_we <= '0';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
 
                         when EXECUTE =>
-                        pc_we <= '1';
-                        if opcode = "1100011" then
-                                if branch_control = '1' then
-                                        sel_pc <= "10";
+                                sel_pc <= "11";
+                                pc_we <= '1';
+                                ir_we <= '0';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
+                                if opcode = "1100011" then
+                                        if branch_control = '1' then
+                                                sel_pc <= "10";
+                                        else
+                                                sel_pc <= "11";
+                                        end if;
+                                elsif opcode = "1101111" then
+                                        sel_pc <= "01";
+                                elsif opcode = "1100111" then
+                                        sel_pc <= "00";
                                 else
                                         sel_pc <= "11";
                                 end if;
-                        elsif opcode = "1101111" then
-                                sel_pc <= "01";
-                        elsif opcode = "1100111" then
-                                sel_pc <= "00";
-                        else
-                                sel_pc <= "11";
-                        end if;
 
                         when MEMORY =>
-                        if opcode = "0100011" then
-                                dmem_wen <= '1';
+                                sel_pc <= "11";
+                                pc_we <= '0';
+                                ir_we <= '0';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
+                                if opcode = "0100011" then
+                                        dmem_wen <= '1';
                                 end if;
 
                         when WRITEBACK =>
+                                sel_pc <= "11";
+                                pc_we <= '0';
+                                ir_we <= '0';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
                                 case opcode is
                                         when "0000011" =>
                                                 rf_wen <= '1';
@@ -158,8 +179,14 @@ begin
                                                 rf_wen <= '0';
                                                 sel_wb <= "00";
                                 end case;
+
                         when others =>
-                                null;
+                                sel_pc <= "11";
+                                pc_we <= '0';
+                                ir_we <= '0';
+                                rf_wen <= '0';
+                                sel_wb <= "00";
+                                dmem_wen <= '0';
                 end case;
         end process;
 
