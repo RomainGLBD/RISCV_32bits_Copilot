@@ -70,14 +70,9 @@ begin
 					when others => alu_sel := "0010";
 				end case; 
 
-			-- Loads: distinguish LB/LH/LW
+			-- Loads use base+imm address calculation in ALU (ADD)
 			when "0000011" =>
-				case func3 is
-					when "000" => alu_sel := "1010"; -- LB
-					when "001" => alu_sel := "1011"; -- LH
-					when "010" => alu_sel := "1100"; -- LW
-					when others => alu_sel := "0010"; -- default ADD
-				end case;
+				alu_sel := "0010";
 
 			-- S-type (stores) use ADD
 			when "0100011" =>

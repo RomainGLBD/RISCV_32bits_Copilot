@@ -14,8 +14,12 @@ end Memoire_data;
 architecture Behavioral of Memoire_data is
         type memory_array is array (0 to 2047) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
-                                
-        others => (others => '0'));
+                5 => x"000001AE", -- 430
+                6 => x"0000001F", -- 31
+                7 => x"000005DC", -- 1500
+                8 => x"0000017F", -- 383
+                                9 => x"12345000", -- expected value for LUI test
+                others => x"00000000");
         signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
 begin
 

@@ -20,6 +20,8 @@ architecture Structural of Top_level is
 	signal pc_next_s        : STD_LOGIC_VECTOR(31 downto 0);
 		signal instruction_s    : STD_LOGIC_VECTOR(31 downto 0);
 		signal instruction_reg_s: STD_LOGIC_VECTOR(31 downto 0);
+		signal pc_instr_s       : STD_LOGIC_VECTOR(31 downto 0);
+		signal pc_plus4_instr_s : STD_LOGIC_VECTOR(31 downto 0);
 	signal imm_s            : STD_LOGIC_VECTOR(31 downto 0);
 	signal br_jal_adr_s     : STD_LOGIC_VECTOR(31 downto 0);
 	signal jalr_adr_s       : STD_LOGIC_VECTOR(31 downto 0);
@@ -40,6 +42,7 @@ architecture Structural of Top_level is
 
 	signal alu_ctrl_s       : STD_LOGIC_VECTOR(3 downto 0);
 	signal br_type_s        : STD_LOGIC_VECTOR(2 downto 0);
+	signal alu_a_s          : STD_LOGIC_VECTOR(31 downto 0);
 	signal alu_b_s          : STD_LOGIC_VECTOR(31 downto 0);
 	signal alu_result_s     : STD_LOGIC_VECTOR(31 downto 0);
 	signal alu_branch_s     : STD_LOGIC;
@@ -54,6 +57,13 @@ begin
 	branch_to_fsm_s <= alu_branch_s when opcode_s = "1100011" else '0';
 	jalr_adr_s <= alu_result_s(31 downto 1) & '0';
 	dmem_wen_s <= dmem_wmask_s when dmem_we_req_s = '1' else (others => '0');
+
+	-- RV32I ALU A source selection.
+	-- AUIPC: PC + imm, LUI: 0 + imm, others: rs1 (+ op2)
+	with opcode_s select alu_a_s <=
+		pc_instr_s      when "0010111", -- AUIPC
+		(others => '0') when "0110111", -- LUI
+		rs1_data_s      when others;
 
 	u_pc: entity work.Programm_Counter
 		port map (
@@ -73,7 +83,7 @@ begin
 	u_add_imm: entity work.add_imm
 		port map (
 			IMM        => imm_s,
-			pc_out     => pc_out_s,
+			pc_out     => pc_instr_s,
 			br_jal_adr => br_jal_adr_s
 		);
 
@@ -100,9 +110,13 @@ begin
 	begin
 		if reset = '1' then
 				instruction_reg_s <= (others => '0');
+			pc_instr_s <= (others => '0');
+			pc_plus4_instr_s <= (others => '0');
 		elsif rising_edge(clk) then
 				if ir_we_s = '1' then
 						instruction_reg_s <= instruction_s;
+				pc_instr_s <= pc_out_s;
+				pc_plus4_instr_s <= pc_plus4_s;
 				end if;
 		end if;
 	end process;
@@ -166,7 +180,7 @@ begin
 
 	u_alu: entity work.ALU_32_bits
 		port map (
-			A           => rs1_data_s,
+			A           => alu_a_s,
 			B           => alu_b_s,
 			ALUCtrl     => alu_ctrl_s,
 			BranchType  => br_type_s,
@@ -187,7 +201,7 @@ begin
 		port map (
 			D       => dmem_out_s,
 			alu_out => alu_result_s,
-			pc_out  => pc_plus4_s,
+			pc_out  => pc_plus4_instr_s,
 			sel_wb  => sel_wb_s,
 			WD      => wb_data_s
 		);
