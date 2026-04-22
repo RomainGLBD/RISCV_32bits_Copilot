@@ -9,8 +9,5 @@ end add_four;
 
 architecture Behavioral of add_four is
 begin
-    process(pc_out)
-    begin
-        pc_plus4 <= STD_LOGIC_VECTOR(UNSIGNED(pc_out) + to_unsigned(4, 32)); -- Ajoute 4
-    end process;
+    pc_plus4 <= STD_LOGIC_VECTOR(UNSIGNED(pc_out) + to_unsigned(4, 32));
 end Behavioral;

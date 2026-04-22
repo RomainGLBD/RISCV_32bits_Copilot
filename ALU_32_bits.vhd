@@ -29,16 +29,14 @@ begin
             when "0100" => res := std_logic_vector(shift_left(unsigned(A), to_integer(unsigned(B(4 downto 0)))));
             when "0101" => res := std_logic_vector(shift_right(unsigned(A), to_integer(unsigned(B(4 downto 0)))));
             when "0111" => -- SLT
-                if (signed(A) < signed(B)) then
-                    res := (others => '0'); res(0) := '1';
-                else
-                    res := (others => '0');
+                res := (others => '0');
+                if signed(A) < signed(B) then
+                    res(0) := '1';
                 end if;
             when "1000" => -- SLTU
-                if (unsigned(A) < unsigned(B)) then
-                    res := (others => '0'); res(0) := '1';
-                else
-                    res := (others => '0');
+                res := (others => '0');
+                if unsigned(A) < unsigned(B) then
+                    res(0) := '1';
                 end if;
             when "1001" => -- SRA
                 res := std_logic_vector(shift_right(signed(A), to_integer(unsigned(B(4 downto 0)))));

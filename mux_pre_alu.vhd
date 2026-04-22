@@ -12,14 +12,5 @@ end mux_pre_alu;
 
 architecture Behavioral of mux_pre_alu is
 begin
-    process(RD2, IMM, sel_op2)
-    begin
-        -- This conditional statement checks the value of the selection signal 'sel_op2'.
-        -- If 'sel_op2' is equal to '0', the corresponding operation or data path will be executed.
-        if sel_op2 = '0' then
-            B <= RD2;
-        else
-            B <= IMM;
-        end if;
-    end process;
+    B <= RD2 when sel_op2 = '0' else IMM;
 end Behavioral;
