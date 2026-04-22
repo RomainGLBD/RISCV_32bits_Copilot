@@ -28,7 +28,7 @@ begin
             when "0011" => res := A xor B;
             when "0100" => res := std_logic_vector(shift_left(unsigned(A), to_integer(unsigned(B(4 downto 0)))));
             when "0101" => res := std_logic_vector(shift_right(unsigned(A), to_integer(unsigned(B(4 downto 0)))));
-            when "0111" => -- SLT
+            when "0111" => -- SLT 
                 if (signed(A) < signed(B)) then
                     res := (others => '0'); res(0) := '1';
                 else
