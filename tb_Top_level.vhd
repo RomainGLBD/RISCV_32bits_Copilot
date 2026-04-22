@@ -16,7 +16,7 @@ architecture Behavioral of tb_Top_level is
 
     constant CLK_PERIOD   : time := 10 ns;
     constant RESET_CYCLES : natural := 4;
-    constant RUN_CYCLES   : natural := 6496;
+    constant RUN_CYCLES   : natural := 5000000;
 
     function has_unknown(s : STD_LOGIC_VECTOR) return boolean is
     begin
