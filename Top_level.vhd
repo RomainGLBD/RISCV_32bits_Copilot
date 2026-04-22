@@ -47,11 +47,14 @@ architecture Structural of Top_level is
 	signal alu_result_s     : STD_LOGIC_VECTOR(31 downto 0);
 	signal alu_branch_s     : STD_LOGIC;
 	signal branch_to_fsm_s  : STD_LOGIC;
+	signal load_sel_s       : STD_LOGIC_VECTOR(2 downto 0);
+	signal load_mask_s      : STD_LOGIC_VECTOR(3 downto 0);
 
 	signal rs1_data_s       : STD_LOGIC_VECTOR(31 downto 0);
 	signal rs2_data_s       : STD_LOGIC_VECTOR(31 downto 0);
 	signal wb_data_s        : STD_LOGIC_VECTOR(31 downto 0);
 	signal dmem_out_s       : STD_LOGIC_VECTOR(31 downto 0);
+	signal load_data_s      : STD_LOGIC_VECTOR(31 downto 0);
 begin
 	-- Keep branch feedback active only for branch opcodes to avoid false branching.
 	branch_to_fsm_s <= alu_branch_s when opcode_s = "1100011" else '0';
@@ -148,7 +151,9 @@ begin
 			addr_lsb        => alu_result_s(1 downto 0),
 			sel_fnct_alu    => alu_ctrl_s,
 			sel_fnct_br_alu => br_type_s,
-			dmem_wmask      => dmem_wmask_s
+			dmem_wmask      => dmem_wmask_s,
+			load_sel        => load_sel_s,
+			load_mask       => load_mask_s
 		);
 
 	u_rf: entity work.File_de_registres
@@ -197,9 +202,17 @@ begin
 			data_out => dmem_out_s
 		);
 
+		u_load_manager: entity work.load_manager
+			port map (
+				dmem_out  => dmem_out_s,
+				load_sel  => load_sel_s,
+				load_mask => load_mask_s,
+				load_data => load_data_s
+			);
+
 	u_mux_wb: entity work.mux_post_alu
 		port map (
-			D       => dmem_out_s,
+			D       => load_data_s,
 			alu_out => alu_result_s,
 			pc_out  => pc_plus4_instr_s,
 			sel_wb  => sel_wb_s,

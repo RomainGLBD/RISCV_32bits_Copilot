@@ -10,7 +10,9 @@ entity Decode is
 		addr_lsb        : in  STD_LOGIC_VECTOR(1 downto 0);
 		sel_fnct_alu    : out STD_LOGIC_VECTOR(3 downto 0);
 		sel_fnct_br_alu : out STD_LOGIC_VECTOR(2 downto 0);
-		dmem_wmask      : out STD_LOGIC_VECTOR(3 downto 0)
+		dmem_wmask      : out STD_LOGIC_VECTOR(3 downto 0);
+		load_sel        : out STD_LOGIC_VECTOR(2 downto 0);
+		load_mask       : out STD_LOGIC_VECTOR(3 downto 0)
 	);
 end Decode;
 
@@ -20,11 +22,15 @@ begin
 		variable alu_sel : STD_LOGIC_VECTOR(3 downto 0);
 		variable br_sel  : STD_LOGIC_VECTOR(2 downto 0);
 		variable wmask   : STD_LOGIC_VECTOR(3 downto 0);
+		variable lsel    : STD_LOGIC_VECTOR(2 downto 0);
+		variable lmask   : STD_LOGIC_VECTOR(3 downto 0);
 	begin
 		-- Defaults
 		alu_sel := "0010"; -- ADD
 		br_sel  := "000"; -- BEQ (unused when not branching)
 		wmask   := "0000";
+		lsel    := "000"; -- LW / no byte or halfword extraction
+		lmask   := "1111"; -- LW default
 
 		case opcode is
 			-- R-type
@@ -73,6 +79,41 @@ begin
 			-- Loads use base+imm address calculation in ALU (ADD)
 			when "0000011" =>
 				alu_sel := "0010";
+				case func3 is
+					when "000" =>
+						lsel  := "001"; -- LB
+						case addr_lsb is
+							when "00" => lmask := "0001";
+							when "01" => lmask := "0010";
+							when "10" => lmask := "0100";
+							when others => lmask := "1000";
+						end case;
+					when "001" =>
+						lsel := "010"; -- LH
+						if addr_lsb(1) = '0' then
+							lmask := "0011";
+						else
+							lmask := "1100";
+						end if;
+					when "100" =>
+						lsel  := "011"; -- LBU
+						case addr_lsb is
+							when "00" => lmask := "0001";
+							when "01" => lmask := "0010";
+							when "10" => lmask := "0100";
+							when others => lmask := "1000";
+						end case;
+					when "101" =>
+						lsel := "100"; -- LHU
+						if addr_lsb(1) = '0' then
+							lmask := "0011";
+						else
+							lmask := "1100";
+						end if;
+					when others =>
+						lsel  := "000"; -- LW (and default fall-back)
+						lmask := "1111";
+				end case;
 
 			-- S-type (stores) use ADD
 			when "0100011" =>
@@ -121,5 +162,7 @@ begin
 		sel_fnct_alu    <= alu_sel;
 		sel_fnct_br_alu <= br_sel;
 		dmem_wmask      <= wmask;
+		load_sel        <= lsel;
+		load_mask       <= lmask;
 	end process;
 end Behavioral;
