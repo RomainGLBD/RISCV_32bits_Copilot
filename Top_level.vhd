@@ -18,7 +18,6 @@ architecture Structural of Top_level is
 	signal pc_out_s         : STD_LOGIC_VECTOR(31 downto 0);
 	signal pc_plus4_s       : STD_LOGIC_VECTOR(31 downto 0);
 	signal pc_next_s        : STD_LOGIC_VECTOR(31 downto 0);
-	signal pc_instr_s       : STD_LOGIC_VECTOR(31 downto 0);
 		signal instruction_s    : STD_LOGIC_VECTOR(31 downto 0);
 		signal instruction_reg_s: STD_LOGIC_VECTOR(31 downto 0);
 	signal imm_s            : STD_LOGIC_VECTOR(31 downto 0);
@@ -67,14 +66,14 @@ begin
 
 	u_add4: entity work.add_four
 		port map (
-			pc_out   => pc_instr_s,
+			pc_out   => pc_out_s,
 			pc_plus4 => pc_plus4_s
 		);
 
 	u_add_imm: entity work.add_imm
 		port map (
 			IMM        => imm_s,
-			pc_out     => pc_instr_s,
+			pc_out     => pc_out_s,
 			br_jal_adr => br_jal_adr_s
 		);
 
@@ -101,11 +100,9 @@ begin
 	begin
 		if reset = '1' then
 				instruction_reg_s <= (others => '0');
-				pc_instr_s <= (others => '0');
 		elsif rising_edge(clk) then
 				if ir_we_s = '1' then
 						instruction_reg_s <= instruction_s;
-						pc_instr_s <= pc_out_s;
 				end if;
 		end if;
 	end process;
@@ -191,7 +188,6 @@ begin
 			D       => dmem_out_s,
 			alu_out => alu_result_s,
 			pc_out  => pc_plus4_s,
-			pc_imm  => br_jal_adr_s,
 			sel_wb  => sel_wb_s,
 			WD      => wb_data_s
 		);

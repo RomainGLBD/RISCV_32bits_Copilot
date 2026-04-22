@@ -12,7 +12,7 @@ entity Memoire_data is
 end Memoire_data;
 
 architecture Behavioral of Memoire_data is
-        type memory_array is array (0 to 4095) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 2047) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
                                  0  => x"0FF000FF",
                                 1  => x"00000000",
@@ -59,8 +59,7 @@ architecture Behavioral of Memoire_data is
                                 42 => x"00000000",
                                 43 => x"00000000",
         
-        others => x"10101010"
-        );
+        others => (others => '0'));
         signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
 begin
 
@@ -69,7 +68,7 @@ begin
                 variable word_data : STD_LOGIC_VECTOR(31 downto 0);
         begin
                 if rising_edge(clk) then
-                        word_idx := unsigned(addr(13 downto 2));
+                        word_idx := resize(unsigned(addr(11 downto 2)), 12);
                         if we /= "0000" then
                                 -- Use enough address bits to cover full data memory depth.
                                 word_data := memory(to_integer(word_idx));
