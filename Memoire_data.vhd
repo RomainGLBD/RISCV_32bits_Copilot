@@ -12,23 +12,62 @@ entity Memoire_data is
 end Memoire_data;
 
 architecture Behavioral of Memoire_data is
-        type memory_array is array (0 to 2047) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 4095) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array := (
-                5 => x"000001AE", -- 430
-                6 => x"0000001F", -- 31
-                7 => x"000005DC", -- 1500
-                8 => x"0000017F", -- 383
-                                9 => x"12345000", -- expected value for LUI test
-                others => x"00000000");
+                0  => x"0FF000FF",
+                                1  => x"00000000",
+                                2  => x"00000000",
+                                3  => x"00000000",
+                                4  => x"0FF000FF",
+                                5  => x"00000000",
+                                6  => x"00000000",
+                                7  => x"00000000",
+                                8  => x"FF0000FF",
+                                9  => x"F00F0FF0",
+                                10 => x"00000000",
+                                11 => x"00000000",
+                                12 => x"FF0000FF",
+                                13 => x"F00F0FF0",
+                                14 => x"00000000",
+                                15 => x"00000000",
+                                16 => x"00FF00FF",
+                                17 => x"FF00FF00",
+                                18 => x"0FF00FF0",
+                                19 => x"F00FF00F",
+                                20 => x"EFEFEFEF",
+                                21 => x"EFEFEFEF",
+                                22 => x"0000EFEF",
+                                23 => x"00000000",
+                                24 => x"BEEFBEEF",
+                                25 => x"BEEFBEEF",
+                                26 => x"BEEFBEEF",
+                                27 => x"BEEFBEEF",
+                                28 => x"BEEFBEEF",
+                                29 => x"00000000",
+                                30 => x"00000000",
+                                31 => x"00000000",
+                                32 => x"DEADBEEF",
+                                33 => x"DEADBEEF",
+                                34 => x"DEADBEEF",
+                                35 => x"DEADBEEF",
+                                36 => x"DEADBEEF",
+                                37 => x"DEADBEEF",
+                                38 => x"DEADBEEF",
+                                39 => x"DEADBEEF",
+                                40 => x"DEADBEEF",
+                                41 => x"DEADBEEF",
+                                42 => x"00000000",
+                                43 => x"00000000",
+                                others => x"10000001");
         signal word_data_dbg : STD_LOGIC_VECTOR(31 downto 0);
 begin
 
         process(clk)
-                variable word_idx  : unsigned(11 downto 0);
+                variable word_idx  : unsigned(13 downto 0);
                 variable word_data : STD_LOGIC_VECTOR(31 downto 0);
         begin
                 if rising_edge(clk) then
-                        word_idx := resize(unsigned(addr(11 downto 2)), 12);
+                        word_idx := resize(unsigned(addr(13 downto 2)), 14);
                         if we /= "0000" then
                                 -- Use enough address bits to cover full data memory depth.
                                 word_data := memory(to_integer(word_idx));
