@@ -63,38 +63,32 @@ architecture Behavioral of Memoire_data is
 begin
 
         process(clk)
-                variable word_idx  : unsigned(13 downto 0);
-                variable word_data : STD_LOGIC_VECTOR(31 downto 0);
         begin
                 if rising_edge(clk) then
-                        word_idx := resize(unsigned(addr(13 downto 2)), 14);
                         if we /= "0000" then
-                                -- Use enough address bits to cover full data memory depth.
-                                word_data := memory(to_integer(word_idx));
                                 case we is
                                         when "0001" => -- SB at byte lane 0
-                                                word_data(7 downto 0) := data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(7 downto 0) <= data_in(7 downto 0);
                                         when "0010" => -- SB at byte lane 1
-                                                word_data(15 downto 8) := data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(15 downto 8) <= data_in(7 downto 0);
                                         when "0100" => -- SB at byte lane 2
-                                                word_data(23 downto 16) := data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(23 downto 16) <= data_in(7 downto 0);
                                         when "1000" => -- SB at byte lane 3
-                                                word_data(31 downto 24) := data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(31 downto 24) <= data_in(7 downto 0);
                                         when "0011" => -- SH at low halfword
-                                                word_data(7 downto 0) := data_in(7 downto 0);
-                                                word_data(15 downto 8) := data_in(15 downto 8);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(7 downto 0) <= data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(15 downto 8) <= data_in(15 downto 8);
                                         when "1100" => -- SH at high halfword
-                                                word_data(23 downto 16) := data_in(7 downto 0);
-                                                word_data(31 downto 24) := data_in(15 downto 8);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(23 downto 16) <= data_in(7 downto 0);
+                                                memory(to_integer(unsigned(addr(13 downto 2))))(31 downto 24) <= data_in(15 downto 8);
                                         when "1111" => -- SW
-                                                word_data := data_in;
+                                                memory(to_integer(unsigned(addr(13 downto 2)))) <= data_in;
                                         when others =>
                                                 null;
                                 end case;
-                                word_data_dbg <= word_data;
-                                memory(to_integer(word_idx)) <= word_data;
+                                word_data_dbg <= memory(to_integer(unsigned(addr(13 downto 2))));
                         else
-                                data_out <= memory(to_integer(word_idx));
+                                data_out <= memory(to_integer(unsigned(addr(13 downto 2))));
                         end if;
                 end if;
         end process;

@@ -11,7 +11,7 @@ entity Memoire_instructions is
 end Memoire_instructions;
 
 architecture Behavioral of Memoire_instructions is
-        type memory_array is array (0 to 16383) of STD_LOGIC_VECTOR(31 downto 0);
+        type memory_array is array (0 to 8191) of STD_LOGIC_VECTOR(31 downto 0);
         signal memory : memory_array :=   (
                 0 => x"00002537",
                 1 => x"00050513",
@@ -7914,9 +7914,9 @@ begin
         begin
                 if rising_edge(clk) then
                         if we = '1' then
-                                memory(to_integer(unsigned(addr(15 downto 2)))) <= data_in;
+                                memory(to_integer(unsigned(addr(14 downto 2)))) <= data_in;
                         else
-                                data_out_reg <= memory(to_integer(unsigned(addr(15 downto 2))));
+                                data_out_reg <= memory(to_integer(unsigned(addr(14 downto 2))));
                         end if;
                 end if;
         end process;

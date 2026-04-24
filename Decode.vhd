@@ -19,18 +19,13 @@ end Decode;
 architecture Behavioral of Decode is
 begin
 	process(opcode, func3, func7, addr_lsb)
-		variable alu_sel : STD_LOGIC_VECTOR(3 downto 0);
-		variable br_sel  : STD_LOGIC_VECTOR(2 downto 0);
-		variable wmask   : STD_LOGIC_VECTOR(3 downto 0);
-		variable lsel    : STD_LOGIC_VECTOR(2 downto 0);
-		variable lmask   : STD_LOGIC_VECTOR(3 downto 0);
 	begin
 		-- Defaults
-		alu_sel := "0010"; -- ADD
-		br_sel  := "000"; -- BEQ (unused when not branching)
-		wmask   := "0000";
-		lsel    := "000"; -- LW / no byte or halfword extraction
-		lmask   := "1111"; -- LW default
+		sel_fnct_alu    <= "0010"; -- ADD
+		sel_fnct_br_alu <= "000"; -- BEQ (unused when not branching)
+		dmem_wmask      <= "0000";
+		load_sel        <= "000"; -- LW / no byte or halfword extraction
+		load_mask       <= "1111"; -- LW default
 
 		case opcode is
 			-- R-type
@@ -38,131 +33,125 @@ begin
 				case func3 is
 					when "000" =>
 						if func7 = "0100000" then
-							alu_sel := "0110"; -- SUB
+							sel_fnct_alu <= "0110"; -- SUB
 						else
-							alu_sel := "0010"; -- ADD
+							sel_fnct_alu <= "0010"; -- ADD
 						end if;
-					when "111" => alu_sel := "0000"; -- AND
-					when "110" => alu_sel := "0001"; -- OR
-					when "100" => alu_sel := "0011"; -- XOR
-					when "001" => alu_sel := "0100"; -- SLL
+					when "111" => sel_fnct_alu <= "0000"; -- AND
+					when "110" => sel_fnct_alu <= "0001"; -- OR
+					when "100" => sel_fnct_alu <= "0011"; -- XOR
+					when "001" => sel_fnct_alu <= "0100"; -- SLL
 					when "101" =>
 						if func7 = "0100000" then
-							alu_sel := "1001"; -- SRA
+							sel_fnct_alu <= "1001"; -- SRA
 						else
-							alu_sel := "0101"; -- SRL
+							sel_fnct_alu <= "0101"; -- SRL
 						end if;
-					when "010" => alu_sel := "0111"; -- SLT
-					when "011" => alu_sel := "1000"; -- SLTU
-					when others => alu_sel := "0010";
+					when "010" => sel_fnct_alu <= "0111"; -- SLT
+					when "011" => sel_fnct_alu <= "1000"; -- SLTU
+					when others => sel_fnct_alu <= "0010";
 				end case;
 
 			-- I-type arithmetic
 			when "0010011" =>
 				case func3 is
-					when "000" => alu_sel := "0010"; -- ADDI
-					when "111" => alu_sel := "0000"; -- ANDI
-					when "110" => alu_sel := "0001"; -- ORI
-					when "100" => alu_sel := "0011"; -- XORI
-					when "001" => alu_sel := "0100"; -- SLLI
+					when "000" => sel_fnct_alu <= "0010"; -- ADDI
+					when "111" => sel_fnct_alu <= "0000"; -- ANDI
+					when "110" => sel_fnct_alu <= "0001"; -- ORI
+					when "100" => sel_fnct_alu <= "0011"; -- XORI
+					when "001" => sel_fnct_alu <= "0100"; -- SLLI
 					when "101" =>
 						if func7 = "0100000" then
-							alu_sel := "1001"; -- SRAI
+							sel_fnct_alu <= "1001"; -- SRAI
 						else
-							alu_sel := "0101"; -- SRLI
+							sel_fnct_alu <= "0101"; -- SRLI
 						end if;
-					when "010" => alu_sel := "0111"; -- SLTI
-					when "011" => alu_sel := "1000"; -- SLTIU
-					when others => alu_sel := "0010";
+					when "010" => sel_fnct_alu <= "0111"; -- SLTI
+					when "011" => sel_fnct_alu <= "1000"; -- SLTIU
+					when others => sel_fnct_alu <= "0010";
 				end case; 
 
 			-- Loads use base+imm address calculation in ALU (ADD)
 			when "0000011" =>
-				alu_sel := "0010";
+				sel_fnct_alu <= "0010";
 				case func3 is
 					when "000" =>
-						lsel  := "001"; -- LB
+						load_sel  <= "001"; -- LB
 						case addr_lsb is
-							when "00" => lmask := "0001";
-							when "01" => lmask := "0010";
-							when "10" => lmask := "0100";
-							when others => lmask := "1000";
+							when "00" => load_mask <= "0001";
+							when "01" => load_mask <= "0010";
+							when "10" => load_mask <= "0100";
+							when others => load_mask <= "1000";
 						end case;
 					when "001" =>
-						lsel := "010"; -- LH
+						load_sel <= "010"; -- LH
 						if addr_lsb(1) = '0' then
-							lmask := "0011";
+							load_mask <= "0011";
 						else
-							lmask := "1100";
+							load_mask <= "1100";
 						end if;
 					when "100" =>
-						lsel  := "011"; -- LBU
+						load_sel  <= "011"; -- LBU
 						case addr_lsb is
-							when "00" => lmask := "0001";
-							when "01" => lmask := "0010";
-							when "10" => lmask := "0100";
-							when others => lmask := "1000";
+							when "00" => load_mask <= "0001";
+							when "01" => load_mask <= "0010";
+							when "10" => load_mask <= "0100";
+							when others => load_mask <= "1000";
 						end case;
 					when "101" =>
-						lsel := "100"; -- LHU
+						load_sel <= "100"; -- LHU
 						if addr_lsb(1) = '0' then
-							lmask := "0011";
+							load_mask <= "0011";
 						else
-							lmask := "1100";
+							load_mask <= "1100";
 						end if;
 					when others =>
-						lsel  := "000"; -- LW (and default fall-back)
-						lmask := "1111";
+						load_sel  <= "000"; -- LW (and default fall-back)
+						load_mask <= "1111";
 				end case;
 
 			-- S-type (stores) use ADD
 			when "0100011" =>
-				alu_sel := "0010";
+				sel_fnct_alu <= "0010";
 				case func3 is
 					when "000" => -- SB
 						case addr_lsb is
-							when "00" => wmask := "0001";
-							when "01" => wmask := "0010";
-							when "10" => wmask := "0100";
-							when others => wmask := "1000";
+							when "00" => dmem_wmask <= "0001";
+							when "01" => dmem_wmask <= "0010";
+							when "10" => dmem_wmask <= "0100";
+							when others => dmem_wmask <= "1000";
 						end case;
 					when "001" => -- SH
 						if addr_lsb(1) = '0' then
-							wmask := "0011";
+							dmem_wmask <= "0011";
 						else
-							wmask := "1100";
+							dmem_wmask <= "1100";
 						end if;
 					when "010" => -- SW
-						wmask := "1111";
+						dmem_wmask <= "1111";
 					when others =>
-						wmask := "0000";
+						dmem_wmask <= "0000";
 				end case;
 
 			-- AUIPC / LUI / JAL / JALR use ADD
 			when "0010111" | "0110111" | "1101111" | "1100111" =>
-				alu_sel := "0010";
+				sel_fnct_alu <= "0010";
 
 			-- Branches
 			when "1100011" =>
 				case func3 is
-					when "000" => br_sel := "000"; -- BEQ
-					when "001" => br_sel := "001"; -- BNE
-					when "100" => br_sel := "100"; -- BLT
-					when "101" => br_sel := "101"; -- BGE
-					when "110" => br_sel := "110"; -- BLTU
-					when "111" => br_sel := "111"; -- BGEU
-					when others => br_sel := "000";
+					when "000" => sel_fnct_br_alu <= "000"; -- BEQ
+					when "001" => sel_fnct_br_alu <= "001"; -- BNE
+					when "100" => sel_fnct_br_alu <= "100"; -- BLT
+					when "101" => sel_fnct_br_alu <= "101"; -- BGE
+					when "110" => sel_fnct_br_alu <= "110"; -- BLTU
+					when "111" => sel_fnct_br_alu <= "111"; -- BGEU
+					when others => sel_fnct_br_alu <= "000";
 				end case;
 
 			when others =>
-				alu_sel := "0010";
-				br_sel  := "000";
+				sel_fnct_alu    <= "0010";
+				sel_fnct_br_alu <= "000";
 		end case;
-
-		sel_fnct_alu    <= alu_sel;
-		sel_fnct_br_alu <= br_sel;
-		dmem_wmask      <= wmask;
-		load_sel        <= lsel;
-		load_mask       <= lmask;
 	end process;
 end Behavioral;

@@ -58,9 +58,11 @@ begin
                                 if opcode = "0000011" or opcode = "0100011" then
                                         next_state <= MEMORY;
                                 elsif opcode = "1100011" then
-                                        next_state <= WRITEBACK; 
+                                        next_state <= FETCH;
+                                elsif opcode = "0110011" or opcode = "0010011" or opcode = "0110111" or opcode = "0010111" or opcode = "1101111" or opcode = "1100111" then
+                                        next_state <= FETCH;
                                 else
-                                        next_state <= WRITEBACK;
+                                        next_state <= FETCH;
                                 end if;
                         when MEMORY =>
                                 if opcode = "0100011" then
@@ -113,7 +115,7 @@ begin
                         when FETCH =>
                                 sel_pc <= "11";
                                 pc_we <= '0';
-                                ir_we <= '1';
+                                ir_we <= '0';
                                 rf_wen <= '0';
                                 sel_wb <= "00";
                                 dmem_wen <= '0';
@@ -121,7 +123,7 @@ begin
                         when DECODE =>
                                 sel_pc <= "11";
                                 pc_we <= '0';
-                                ir_we <= '0';
+                                ir_we <= '1';
                                 rf_wen <= '0';
                                 sel_wb <= "00";
                                 dmem_wen <= '0';
@@ -141,8 +143,15 @@ begin
                                         end if;
                                 elsif opcode = "1101111" then
                                         sel_pc <= "01";
+                                        rf_wen <= '1';
+                                        sel_wb <= "10";
                                 elsif opcode = "1100111" then
                                         sel_pc <= "00";
+                                        rf_wen <= '1';
+                                        sel_wb <= "10";
+                                elsif opcode = "0110011" or opcode = "0010011" or opcode = "0110111" or opcode = "0010111" then
+                                        rf_wen <= '1';
+                                        sel_wb <= "01";
                                 else
                                         sel_pc <= "11";
                                 end if;
@@ -169,12 +178,6 @@ begin
                                         when "0000011" =>
                                                 rf_wen <= '1';
                                                 sel_wb <= "00";
-                                        when "1101111" | "1100111" =>
-                                                rf_wen <= '1';
-                                                sel_wb <= "10";
-                                        when "0110011" | "0010011" | "0110111" | "0010111" =>
-                                                rf_wen <= '1';
-                                                sel_wb <= "01";
                                         when others =>
                                                 rf_wen <= '0';
                                                 sel_wb <= "00";

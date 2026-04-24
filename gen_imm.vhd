@@ -17,7 +17,6 @@ architecture rtl of gen_imm is
 begin
     
     process(Instr, type_imm)
-        variable imm_signed : signed(31 downto 0);
     begin
         
         case type_imm is
@@ -25,20 +24,17 @@ begin
             -- Type I: I-type immediate (lw, addi, etc.)
             -- imm = sign_extend(instr[31:20])
             when "000" =>
-                imm_signed := resize(signed(Instr(31 downto 20)), 32);
-                imm_out <= std_logic_vector(imm_signed);
+                imm_out <= std_logic_vector(resize(signed(Instr(31 downto 20)), 32));
             
             -- Type S: S-type immediate (sw, etc.)
             -- imm = sign_extend({instr[31:25], instr[11:7]})
             when "001" =>
-                imm_signed := resize(signed(Instr(31 downto 25) & Instr(11 downto 7)), 32);
-                imm_out <= std_logic_vector(imm_signed);
+                imm_out <= std_logic_vector(resize(signed(Instr(31 downto 25) & Instr(11 downto 7)), 32));
             
             -- Type B: B-type immediate (beq, bne, etc.)
             -- imm = sign_extend({instr[31], instr[7], instr[30:25], instr[11:8], 0})
             when "010" =>
-                imm_signed := resize(signed(Instr(31) & Instr(7) & Instr(30 downto 25) & Instr(11 downto 8) & '0'), 32);
-                imm_out <= std_logic_vector(imm_signed);
+                imm_out <= std_logic_vector(resize(signed(Instr(31) & Instr(7) & Instr(30 downto 25) & Instr(11 downto 8) & '0'), 32));
             
             -- Type U: U-type immediate (lui, auipc, etc.)
             -- imm = {instr[31:12], 12'b0}
@@ -48,8 +44,7 @@ begin
             -- Type J: J-type immediate (jal, etc.)
             -- imm = sign_extend({instr[31], instr[19:12], instr[20], instr[30:21], 0})
             when "100" =>
-                imm_signed := resize(signed(Instr(31) & Instr(19 downto 12) & Instr(20) & Instr(30 downto 21) & '0'), 32);
-                imm_out <= std_logic_vector(imm_signed);
+                imm_out <= std_logic_vector(resize(signed(Instr(31) & Instr(19 downto 12) & Instr(20) & Instr(30 downto 21) & '0'), 32));
             
             -- Type Shamt: Shamt immediate (slli, srli, etc.)
             -- imm = zero_extend(instr[24:20])
