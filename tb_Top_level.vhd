@@ -8,6 +8,8 @@ end tb_Top_level;
 architecture Behavioral of tb_Top_level is
     signal clk        : STD_LOGIC := '0';
     signal reset      : STD_LOGIC := '1';
+    signal uart_rx    : STD_LOGIC := '1';
+    signal uart_load_enable : STD_LOGIC := '0';
     signal pc_dbg     : STD_LOGIC_VECTOR(31 downto 0);
     signal instr_dbg  : STD_LOGIC_VECTOR(31 downto 0);
     signal alu_dbg    : STD_LOGIC_VECTOR(31 downto 0);
@@ -35,6 +37,8 @@ begin
         port map (
             clk        => clk,
             reset      => reset,
+            uart_rx    => uart_rx,
+            uart_load_enable => uart_load_enable,
             pc_dbg     => pc_dbg,
             instr_dbg  => instr_dbg,
             alu_dbg    => alu_dbg,
