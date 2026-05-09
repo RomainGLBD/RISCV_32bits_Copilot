@@ -1,0 +1,536 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sat May  9 17:52:26 2026
+# Process ID: 20356
+# Current directory: C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.runs/synth_1
+# Command line: vivado.exe -log Top_level.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_level.tcl
+# Log file: C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.runs/synth_1/Top_level.vds
+# Journal file: C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.runs/synth_1\vivado.jou
+# Running On: Romain, OS: Windows, CPU Frequency: 3200 MHz, CPU Physical cores: 16, Host memory: 17088 MB
+#-----------------------------------------------------------
+source Top_level.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 387.328 ; gain = 57.402
+Command: read_checkpoint -auto_incremental -incremental C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.srcs/utils_1/imports/synth_1/Top_level.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.srcs/utils_1/imports/synth_1/Top_level.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top Top_level -part xc7a100tcsg324-3
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-3
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 15512
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1215.004 ; gain = 408.809
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-9112] actual for formal port 'q_e' is neither a static name nor a globally static expression [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Top_level.vhd:319]
+WARNING: [Synth 8-9112] actual for formal port 'r_e' is neither a static name nor a globally static expression [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Top_level.vhd:320]
+INFO: [Synth 8-638] synthesizing module 'Top_level' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Top_level.vhd:18]
+INFO: [Synth 8-638] synthesizing module 'instruction_display_buffer' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/instruction_display_buffer.vhd:33]
+INFO: [Synth 8-256] done synthesizing module 'instruction_display_buffer' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/instruction_display_buffer.vhd:33]
+INFO: [Synth 8-638] synthesizing module 'Programm_Counter' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Program_counter.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'Programm_Counter' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Program_counter.vhd:14]
+INFO: [Synth 8-638] synthesizing module 'UART_recv' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_recv.vhd:36]
+INFO: [Synth 8-256] done synthesizing module 'UART_recv' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_recv.vhd:36]
+INFO: [Synth 8-638] synthesizing module 'uart_mem_loader' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_mem_loader.vhd:24]
+INFO: [Synth 8-256] done synthesizing module 'uart_mem_loader' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_mem_loader.vhd:24]
+INFO: [Synth 8-638] synthesizing module 'add_four' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_four.vhd:10]
+INFO: [Synth 8-256] done synthesizing module 'add_four' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_four.vhd:10]
+INFO: [Synth 8-638] synthesizing module 'add_imm' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_imm.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'add_imm' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_imm.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'mux_pc' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pc.vhd:17]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pc.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'mux_pc' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pc.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'Memoire_instructions' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_instructions.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'Memoire_instructions' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_instructions.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'FSM_control' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/FSM_control.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'FSM_control' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/FSM_control.vhd:25]
+INFO: [Synth 8-638] synthesizing module 'Decode' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Decode.vhd:19]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Decode.vhd:33]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Decode.vhd:57]
+INFO: [Synth 8-256] done synthesizing module 'Decode' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Decode.vhd:19]
+INFO: [Synth 8-638] synthesizing module 'File_de_registres' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/File_de_registres.vhd:18]
+INFO: [Synth 8-256] done synthesizing module 'File_de_registres' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/File_de_registres.vhd:18]
+INFO: [Synth 8-638] synthesizing module 'gen_imm' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gen_imm.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'gen_imm' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gen_imm.vhd:16]
+INFO: [Synth 8-638] synthesizing module 'mux_pre_alu' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pre_alu.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'mux_pre_alu' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pre_alu.vhd:13]
+INFO: [Synth 8-638] synthesizing module 'ALU_32_bits' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/ALU_32_bits.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'ALU_32_bits' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/ALU_32_bits.vhd:16]
+INFO: [Synth 8-638] synthesizing module 'Memoire_data' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_data.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'Memoire_data' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_data.vhd:14]
+INFO: [Synth 8-638] synthesizing module 'load_manager' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/load_manager.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'load_manager' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/load_manager.vhd:14]
+INFO: [Synth 8-638] synthesizing module 'mux_post_alu' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_post_alu.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'mux_post_alu' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_post_alu.vhd:14]
+INFO: [Synth 8-638] synthesizing module 'CTRL_SEPT_S' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/CTRL_SEPT_S.vhd:47]
+INFO: [Synth 8-638] synthesizing module 'TRANSCODEUR' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:33]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:50]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:71]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:92]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:113]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:134]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:155]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:176]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:197]
+INFO: [Synth 8-256] done synthesizing module 'TRANSCODEUR' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd:33]
+INFO: [Synth 8-638] synthesizing module 'gestion_frequence' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gestion_frequence.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'gestion_frequence' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gestion_frequence.vhd:43]
+INFO: [Synth 8-638] synthesizing module 'mod_8' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mod_8.vhd:42]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mod_8.vhd:66]
+INFO: [Synth 8-256] done synthesizing module 'mod_8' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mod_8.vhd:42]
+INFO: [Synth 8-638] synthesizing module 'MUX_SEPT_S' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:49]
+INFO: [Synth 8-226] default block is never used [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:55]
+WARNING: [Synth 8-614] signal 'SS4' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS3' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS2' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS1' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS8' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS7' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS6' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+WARNING: [Synth 8-614] signal 'SS5' is read in the process but is not in the sensitivity list [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'MUX_SEPT_S' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd:49]
+INFO: [Synth 8-256] done synthesizing module 'CTRL_SEPT_S' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/CTRL_SEPT_S.vhd:47]
+INFO: [Synth 8-638] synthesizing module 'UART_fifoed_send' [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/UART_fifoed_send_V1.vhd:39]
+	Parameter baudrate bound to: 115200 - type: integer 
+	Parameter clock_frequency bound to: 100000000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'UART_fifoed_send' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/UART_fifoed_send_V1.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'Top_level' (0#1) [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Top_level.vhd:18]
+WARNING: [Synth 8-6014] Unused sequential element frame_s_reg[9] was removed.  [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_mem_loader.vhd:40]
+WARNING: [Synth 8-6014] Unused sequential element word_data_dbg_reg was removed.  [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_data.vhd:45]
+WARNING: [Synth 8-7129] Port addr[31] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[30] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[29] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[28] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[27] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[26] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[25] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[24] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[23] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[22] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[21] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[20] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[19] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[18] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[17] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[16] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[15] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[14] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[1] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[0] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[6] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[5] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[4] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[3] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[2] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[1] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[0] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[24] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[23] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[22] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[21] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[20] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[19] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[18] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[17] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[16] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[15] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[11] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[10] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[9] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[8] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[7] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[31] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[30] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[29] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[28] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[27] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[26] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[25] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[24] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[23] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[22] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[21] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[20] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[19] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[18] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[17] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[16] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[15] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[1] in module Memoire_instructions is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[0] in module Memoire_instructions is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1334.578 ; gain = 528.383
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1334.578 ; gain = 528.383
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1334.578 ; gain = 528.383
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 1334.578 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/Nexys4_100T.xdc]
+Finished Parsing XDC File [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/Nexys4_100T.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/Nexys4_100T.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_level_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Top_level_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1445.211 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.033 . Memory (MB): peak = 1445.211 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-3
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'UART_recv'
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'FSM_control'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              001 |                              000
+           zero_as_input |                              110 |                              001
+           wait_next_bit |                              100 |                              010
+              bit_sample |                              101 |                              011
+            bit_received |                              011 |                              100
+           wait_stop_bit |                              010 |                              101
+        last_bit_is_zero |                              000 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'UART_recv'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   fetch |                            00001 |                              000
+                  decode |                            00010 |                              001
+                 execute |                            00100 |                              010
+                  memory |                            01000 |                              011
+               writeback |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'one-hot' in module 'FSM_control'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 3     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input   26 Bit       Adders := 1     
+	   2 Input   13 Bit       Adders := 1     
+	   2 Input   12 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 3     
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   9 Input      8 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 172   
+	               26 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 12    
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---RAMs : 
+	             256K Bit	(8192 X 32 bit)          RAMs := 1     
+	             128K Bit	(4096 X 32 bit)          RAMs := 1     
+	              32K Bit	(4096 X 8 bit)          RAMs := 1     
++---Muxes : 
+	   4 Input   32 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 9     
+	   9 Input   32 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 1     
+	   2 Input   26 Bit        Muxes := 2     
+	   3 Input   16 Bit        Muxes := 1     
+	   2 Input   13 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   10 Bit        Muxes := 3     
+	   3 Input   10 Bit        Muxes := 1     
+	   7 Input   10 Bit        Muxes := 1     
+	   4 Input    9 Bit        Muxes := 1     
+	   3 Input    9 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 4     
+	   8 Input    8 Bit        Muxes := 1     
+	   5 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 10    
+	   4 Input    4 Bit        Muxes := 5     
+	   8 Input    4 Bit        Muxes := 2     
+	   7 Input    4 Bit        Muxes := 3     
+	   5 Input    4 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 4     
+	   2 Input    3 Bit        Muxes := 6     
+	   9 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   4 Input    2 Bit        Muxes := 2     
+	   5 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 193   
+	   7 Input    1 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 2     
+	   3 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 2     
+	   9 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port addr[31] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[30] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[29] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[28] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[27] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[26] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[25] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[24] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[23] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[22] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[21] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[20] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[19] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[18] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[17] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[16] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[15] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[14] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[1] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[0] in module Memoire_data is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[6] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[5] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[4] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[3] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[2] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[1] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Instr[0] in module gen_imm is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[24] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[23] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[22] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[21] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[20] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[19] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[18] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[17] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[16] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[15] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[11] in module FSM_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[10] in module FSM_control is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Top_level   | u_imem/memory_reg | 8 K x 32(NO_CHANGE)    | W | R |                        |   |   | Port A           | 0      | 8      | 
+|u_dmem      | memory_reg        | 4 K x 32(READ_FIRST)   | W |   | 4 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:51 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:56 . Memory (MB): peak = 1445.211 ; gain = 639.016
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Top_level   | u_imem/memory_reg | 8 K x 32(NO_CHANGE)    | W | R |                        |   |   | Port A           | 0      | 8      | 
+|u_dmem      | memory_reg        | 4 K x 32(READ_FIRST)   | W |   | 4 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 4      | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_imem/memory_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_dmem/memory_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_dmem/memory_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_dmem/memory_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_dmem/memory_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 1473.156 ; gain = 666.961
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:02 ; elapsed = 00:01:04 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:02 ; elapsed = 00:01:04 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    64|
+|3     |LUT1     |    36|
+|4     |LUT2     |   219|
+|5     |LUT3     |   185|
+|6     |LUT4     |   258|
+|7     |LUT5     |   449|
+|8     |LUT6     |  2032|
+|9     |MUXF7    |   824|
+|10    |MUXF8    |   256|
+|11    |RAMB36E1 |    12|
+|14    |FDCE     |  4557|
+|15    |FDPE     |     2|
+|16    |FDRE     |  1050|
+|17    |FDSE     |    15|
+|18    |IBUF     |     4|
+|19    |OBUF     |    18|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 1485.766 ; gain = 679.570
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 43 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:51 ; elapsed = 00:01:02 . Memory (MB): peak = 1485.766 ; gain = 568.938
+Synthesis Optimization Complete : Time (s): cpu = 00:01:03 ; elapsed = 00:01:06 . Memory (MB): peak = 1485.766 ; gain = 679.570
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.079 . Memory (MB): peak = 1498.832 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1156 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1504.461 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: e707b703
+INFO: [Common 17-83] Releasing license: Synthesis
+101 Infos, 113 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:11 ; elapsed = 00:01:24 . Memory (MB): peak = 1504.461 ; gain = 1092.016
+INFO: [Common 17-1381] The checkpoint 'C:/Projet-RISCV-Copilot-UART/RISCV-Copilot-UART/RISCV-Copilot-UART.runs/synth_1/Top_level.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Top_level_utilization_synth.rpt -pb Top_level_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat May  9 17:54:00 2026...

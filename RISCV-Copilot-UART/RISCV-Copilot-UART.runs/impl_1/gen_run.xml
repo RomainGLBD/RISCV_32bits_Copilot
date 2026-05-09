@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-3" LaunchTime="1778341942">
+  <File Type="ROUTE-PWR" Name="Top_level_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="Top_level.tcl"/>
+  <File Type="BITSTR-MMI" Name="Top_level.mmi"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="Top_level_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="Top_level_timing_summary_init.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="Top_level_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="Top_level_reports.tcl"/>
+  <File Type="OPT-TIMING" Name="Top_level_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="Top_level_opt.dcp"/>
+  <File Type="OPT-DRC" Name="Top_level_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="Top_level.hwdef"/>
+  <File Type="PWROPT-DCP" Name="Top_level_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="Top_level_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="Top_level_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="Top_level_placed.dcp"/>
+  <File Type="PLACE-IO" Name="Top_level_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="Top_level_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="Top_level_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="Top_level_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="Top_level_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="Top_level_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="Top_level_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BIN" Name="Top_level.bin"/>
+  <File Type="PLACE-TIMING" Name="Top_level_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="Top_level_postplace_pwropt.dcp"/>
+  <File Type="BITSTR-MSK" Name="Top_level.msk"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="Top_level_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="Top_level_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="Top_level_drc_physopted.rpt"/>
+  <File Type="BITSTR-RBT" Name="Top_level.rbt"/>
+  <File Type="PHYSOPT-TIMING" Name="Top_level_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="Top_level_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="Top_level_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="Top_level_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="Top_level_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="Top_level_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="Top_level_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="Top_level_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Top_level_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Top_level_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="Top_level_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="Top_level_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="Top_level_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="Top_level_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="Top_level_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="Top_level_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="Top_level_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="Top_level_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="Top_level_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="Top_level_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="Top_level_bus_skew_routed.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="Top_level_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Top_level_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Top_level_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Top_level_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Top_level_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Top_level_bus_skew_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="Top_level.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Top_level_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Top_level_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BITSTR-NKY" Name="Top_level.nky"/>
+  <File Type="BITSTR-BMM" Name="Top_level_bd.bmm"/>
+  <File Type="PDI-FILE" Name="Top_level.pdi"/>
+  <File Type="RCFI_FILE" Name="Top_level.rcfi"/>
+  <File Type="CFI_FILE" Name="Top_level.cfi"/>
+  <File Type="RNPI_FILE" Name="Top_level.rnpi"/>
+  <File Type="NPI_FILE" Name="Top_level.npi"/>
+  <File Type="RBD_FILE" Name="Top_level.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="Top_level.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="Top_level.sysdef"/>
+  <File Type="BG-BGN" Name="Top_level.bgn"/>
+  <File Type="BG-DRC" Name="Top_level.drc"/>
+  <File Type="RDI-RDI" Name="Top_level.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="Top_level_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="Top_level_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/ALU_32_bits.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/ALU_32_bits.vhd"/>
+        <Attr Name="ImportTime" Val="1778313821"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/TRANSCODEUR.vhd"/>
+        <Attr Name="ImportTime" Val="1778328201"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/gestion_frequence.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gestion_frequence.vhd"/>
+        <Attr Name="ImportTime" Val="1778324089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/mod_8.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mod_8.vhd"/>
+        <Attr Name="ImportTime" Val="1778324089"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/MUX_SEPT_S.vhd"/>
+        <Attr Name="ImportTime" Val="1778324090"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/CTRL_SEPT_S.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/CTRL_SEPT_S.vhd"/>
+        <Attr Name="ImportTime" Val="1778328573"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/Decode.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Decode.vhd"/>
+        <Attr Name="ImportTime" Val="1778313845"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/FSM_control.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/FSM_control.vhd"/>
+        <Attr Name="ImportTime" Val="1778313844"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/File_de_registres.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/File_de_registres.vhd"/>
+        <Attr Name="ImportTime" Val="1778313837"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/Memoire_data.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_data.vhd"/>
+        <Attr Name="ImportTime" Val="1778313845"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/Memoire_instructions.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Memoire_instructions.vhd"/>
+        <Attr Name="ImportTime" Val="1778313832"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/Program_counter.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Program_counter.vhd"/>
+        <Attr Name="ImportTime" Val="1778313824"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/instruction_display_buffer.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/instruction_display_buffer.vhd"/>
+        <Attr Name="ImportTime" Val="1778341856"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/uart_recv.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_recv.vhd"/>
+        <Attr Name="ImportTime" Val="1778313838"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/uart_mem_loader.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_mem_loader.vhd"/>
+        <Attr Name="ImportTime" Val="1778313834"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/add_four.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_four.vhd"/>
+        <Attr Name="ImportTime" Val="1778313836"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/add_imm.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/add_imm.vhd"/>
+        <Attr Name="ImportTime" Val="1778313821"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/mux_pc.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pc.vhd"/>
+        <Attr Name="ImportTime" Val="1778313841"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/gen_imm.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/gen_imm.vhd"/>
+        <Attr Name="ImportTime" Val="1778313823"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/mux_pre_alu.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_pre_alu.vhd"/>
+        <Attr Name="ImportTime" Val="1778313824"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/load_manager.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/load_manager.vhd"/>
+        <Attr Name="ImportTime" Val="1778313839"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/mux_post_alu.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/mux_post_alu.vhd"/>
+        <Attr Name="ImportTime" Val="1778313845"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/UART_fifoed_send_V1.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/UART_fifoed_send_V1.vhd"/>
+        <Attr Name="ImportTime" Val="1778313833"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/Top_level.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/Top_level.vhd"/>
+        <Attr Name="ImportTime" Val="1778341905"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/uart_rx.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/uart_rx.vhd"/>
+        <Attr Name="ImportTime" Val="1778313845"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/byte_2_word.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/byte_2_word.vhd"/>
+        <Attr Name="ImportTime" Val="1778313843"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/word_2_byte.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/word_2_byte.vhd"/>
+        <Attr Name="ImportTime" Val="1778313838"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/RISCV_32bits_Copilot-main/boot_loader.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/RISCV_32bits_Copilot-main/boot_loader.vhd"/>
+        <Attr Name="ImportTime" Val="1778313825"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="Top_level"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/RISCV_32bits_Copilot-main/Nexys4_100T.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../Users/Megaport/OneDrive/Documents/ENSEIRB/S8/RISCV_32bits_Copilot-main/Nexys4_100T.xdc"/>
+        <Attr Name="ImportTime" Val="1778332177"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/Top_level.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2022"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
