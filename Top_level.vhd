@@ -9,7 +9,9 @@ entity Top_level is
 		uart_rx    : in  STD_LOGIC;
 		tx         : out STD_LOGIC;
 		uart_load_enable : in STD_LOGIC;
-		led        : out STD_LOGIC
+		led        : out STD_LOGIC;
+		SS         : out STD_LOGIC_VECTOR(7 downto 0);
+		AN         : out STD_LOGIC_VECTOR(7 downto 0)
 	);
 end Top_level;
 
@@ -77,6 +79,15 @@ architecture Structural of Top_level is
 	signal cpu_reset_s      : STD_LOGIC;
 
 	signal uart_tx_s        : STD_LOGIC;
+
+	-- Instruction display buffer signals
+	signal display_instr_buffer_s  : STD_LOGIC_VECTOR(31 downto 0);
+	signal display_valid_buffer_s  : STD_LOGIC;
+	signal instr_changed_buffer_s  : STD_LOGIC;
+	signal display_instr_selected_s : STD_LOGIC_VECTOR(31 downto 0);
+	signal fifo_count_debug_s      : INTEGER range 0 to 32;
+	signal imem_we_debug_s         : STD_LOGIC;
+	
 begin
     reset <= rst ;
 	-- Connect outputs
@@ -97,6 +108,24 @@ begin
 	imem_data_s <= uart_imem_data_s when (uart_load_enable = '1' and uart_loading_s = '1') else (others => '0');
 
 	cpu_reset_s <= reset or (uart_load_enable and uart_loading_s);
+
+	-- Display buffer: capture loaded instructions and show them one-by-one with 1s delay
+	u_display_buffer: entity work.instruction_display_buffer
+		port map (
+			clk           => clk,
+			rst           => reset,
+			imem_we       => uart_imem_we_s,
+			imem_data     => uart_imem_data_s,
+			display_instr => display_instr_buffer_s,
+			display_valid => display_valid_buffer_s,
+			instr_changed => instr_changed_buffer_s,
+			fifo_count_out => fifo_count_debug_s,
+			imem_we_out   => imem_we_debug_s
+		);
+
+	-- Multiplexer: show buffer instructions if available, else CPU instruction
+	display_instr_selected_s <= display_instr_buffer_s when (display_valid_buffer_s = '1')
+	                            else instruction_reg_s;
 
 	-- RV32I ALU A source selection.
 	-- AUIPC: PC + imm, LUI: 0 + imm, others: rs1 (+ op2)
@@ -278,6 +307,19 @@ begin
 			pc_out  => pc_plus4_instr_s,
 			sel_wb  => sel_wb_s,
 			WD      => wb_data_s
+		);
+
+	-- 7-segment display controller: show current instruction_reg_s (32 bits) or buffer instr
+	u_ctrl_sept_s: entity work.CTRL_SEPT_S
+		port map (
+			clk => clk,
+			rst => reset,
+			Q   => display_instr_selected_s(31 downto 16),
+			R   => display_instr_selected_s(15 downto 0),
+			Q_E => ir_we_s or (uart_loading_s and instr_changed_buffer_s),
+			R_E => ir_we_s or (uart_loading_s and instr_changed_buffer_s),
+			SSS => SS,
+			sortie_anode => AN
 		);
 
 	u_uart_tx: entity work.UART_fifoed_send
